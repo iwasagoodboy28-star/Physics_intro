@@ -1,19 +1,20 @@
 \documentclass[11pt,dvipdfmx]{jsarticle}
 \usepackage{amsmath,amssymb,amsthm}
-\usepackage{tcolorbox}%枠
-\usepackage{url} %リンク
-\usepackage{hyperref}%ref用
-\usepackage{mathtools}%参照する式以外は番号を振らない
+\usepackage{tcolorbox}% 枠
+\usepackage{url} % リンク
+\usepackage{hyperref}% ref用
+\usepackage{mathtools}% 参照する式以外は番号を振らない
+\usepackage{bm}% 数式太字
 \usepackage{okumacro} % ルビ
 \mathtoolsset{showonlyrefs=true}
 \usepackage{tikz,tikzpeople}
 \usetikzlibrary{intersections,calc,arrows.meta,patterns,cd, angles}
-\tcbuselibrary{breakable,theorems,skins}%tcolorboxのオプション
-%色の定義
+\tcbuselibrary{breakable,theorems,skins}% tcolorboxのオプション
+% 色の定義
 \definecolor{nomesihana}{cmyk}{.8,.6,.46,.03}
 \tcbset{mine2/.style={
-fonttitle=\bfseries\upshape, %upshapeで斜体解消
-%fontupper=\itshape, 
+fonttitle=\bfseries\upshape, % upshapeで斜体解消
+% fontupper=\itshape, 
 enhanced,
 breakable=true,
 toprule=1pt,rightrule=1pt,leftrule=1pt,bottomrule=1pt,
@@ -21,7 +22,7 @@ top=0mm,
 bottom=1.5mm,
 coltext=black,
 separator sign dash,
-%sharp corners,
+% sharp corners,
 boxed title style={colframe=white,colback=white,
 left=-0.1mm,right=-0.1mm},
 attach boxed title to top left=
@@ -40,8 +41,8 @@ title={#2},
 
 \newtcolorbox{exbox}[2][]
 {
-  fonttitle=\bfseries\upshape, %upshapeで斜体解消
-  %fontupper=\itshape, 
+  fonttitle=\bfseries\upshape, % upshapeで斜体解消
+  % fontupper=\itshape, 
   enhanced,
   breakable,
   toprule=0pt,rightrule=0pt,leftrule=0pt,bottomrule=0pt,
@@ -98,7 +99,7 @@ title={#2},
 \begin{enumerate}
     \item 物体の速さとは, 単位時間あたりに物体が移動する直線距離を表し, 
     \begin{equation}
-    \text{物体の速さ [m/s]} = \frac{\text{物体の移動した距離 [m]}}{\text{その距離を移動するのにかかった時間[s]}}
+    \textbf{物体の速さ [m/s]} = \frac{\textbf{物体の移動した距離 [m]}}{\textbf{その距離を移動するのにかかった時間[s]}}
     \end{equation}
     で求められる(本来は向きも含んだ式である).
     \item 物体の速度とは, 単位時間あたりに物体が移動する直線距離を, \textbf{向きも含めて表したもの}である. 
@@ -130,11 +131,11 @@ title={#2},
 \subsection{相対速度}
 自分が自動車に乗っていて, 反対方向に走る自動車を見ると, とても早く通り過ぎると思います. また, 自分の乗っている列車と, 隣の線路で同じ方向に走る列車において, 自分の乗っている列車の方が早い場合は, 自分の乗っている列車が少しずつ隣の列車を追い抜いていく様子が見られます. 
 \begin{freebox}{相対速度}
-    自分から相手を見たときの相手の速度を「自分に対する相手の相対速度」という. 相対速度は自分の速度$v_{1}$ [m/s], 相手の速度$v_{2}$ [m/s]として, 
+    自分から相手を見たときの相手の速度を「自分に対する相手の相対速度」という. 自分に対する相手の相対速度は, 自分の速度$v_{1}$ [m/s], 相手の速度$v_{2}$ [m/s]として, 
     \begin{equation}
-        v_{2} - v_{1}
+        \bm{v_{2}} - \bm{v_{1}}
     \end{equation}
-    で与えられる. これは向きも含んだ式である.
+    で与えられる. \textbf{これは向きも含んだ式である}.
 \end{freebox}
 例を書いてみます. 尚, 向きの異なる速度の合成も, 力の合成と同じように行うことができます\footnote{要するにベクトルであれば同じ方法が使えるということです.}. 必要に応じて, \ref{力の図示} 節を参照してください.
 \begin{exbox}{相対速度の例}
@@ -190,11 +191,11 @@ title={#2},
 \subsection{加速度とは}\label{加速度とは}
 中学生のテキストでは何故か曖昧にされがちですが, 力と運動の関連を考察する際に, 加速度という概念は最も重要です. 
 \begin{freebox}{加速度とは}
-    物体の加速度とは, 物体の速度が, 1秒間(単位時間)で何m/s増加(減少)するかを表した量である.
+    \textbf{物体の加速度とは, 物体の速度が, 1秒間(単位時間)で何m/s増加(減少)するかを表した量である}.
 \end{freebox}
 加速度を式で表してみましょう. 時刻$t_{0}$ [s]での速度を$v_{0}$ [m/s], そこから少し経った時刻$t_{1}$ [s]での速度を$v_{1}$ [m/s]とすると,
 \begin{equation}
-    加速度 = \frac{v_{1} - v_{0}}{t_{1} - t_{0}} \label{加速度}
+    \textbf{加速度} = \frac{\bm{v_{1}} - \bm{v_{0}}}{\bm{t_{1}} - \bm{t_{0}}} \label{加速度}
 \end{equation}
 で与えられます. \textbf{加速度の単位は,  [m/s] を [s] で割ることになるため, [m/s$^2$] です}. 
 \begin{exbox}{加速度の例}
@@ -285,9 +286,10 @@ title={#2},
 \begin{freebox}{物理特有の表現}
 \begin{itemize}
     \item \textbf{滑らか} 摩擦がないことを表します.
-    \item \textbf{ゆっくり} 初速度を与えないことを表します.
+    \item \textbf{ゆっくり} 物体にはたらく力がつり合うようにすることを表します.
     \item \textbf{あらい} 摩擦があることを表します.
     \item \textbf{軽い} 質量を無視できることを表します.
+    \item \textbf{静かに} 初速度を与えないことを表します.
 \end{itemize}
 \end{freebox}
  
@@ -462,13 +464,13 @@ title={#2},
 これらの考察より, \textbf{物体の位置を時間で微分すると速度になる}と表現できます. また, \eqref{加速度}式より, \textbf{瞬間の加速度は, 速度を時間で微分したものである}といえます. 
 
 \section{運動の法則}
-物体の運動において成り立っている性質について, 体系的にまとめ上げた人物がアイザック・ニュートンであり, 微積分学のアイデアを考案した人物の一人としても名高い\footnote{微分, 積分といったアイデアは, アイザック・ニュートンと, ゴットフリート・ライプニッツという人物が, それぞれ独立に考案したと言われており, 現在の微積分学でも, ライプニッツが当時用いていた記号が用いられています. 当時, 必要であった極限, 関数の連続性といった概念はあまり整備されておらず, 現在の数学にも用いられるような厳密な定義は, コーシーや, ワイエルシュトラウスといった数学者たちによって与えられました. }です. 彼は次のような法則を発見しました.
+物体の運動において成り立っている性質について, 体系的にまとめ上げた人物がアイザック・ニュートンであり, 微積分学のアイデアを考案した人物の一人としても名高い\footnote{微分, 積分といったアイデアは, アイザック・ニュートンと, ゴットフリート・ライプニッツという人物が, それぞれ独立に考案したと言われており, 現在の微積分学でも, ライプニッツが当時用いていた記号が用いられています. 当時, 必要であった極限, 関数の連続性といった概念はあまり整備されておらず, 現在の数学にも用いられるような厳密な定義は, コーシーや, ワイエルシュトラウスといった数学者たちによって与えられました. }です. 彼は次のような法則を発見しました. \textbf{力学の基礎となる最も重要な法則です}.
 \begin{freebox}{ニュートンの運動の法則}
     \begin{enumerate}
         \item \textbf{慣性の法則}：物体に力が働かない場合(物体に働く力の合力が0 Nの場合も含む), 静止している物体は静止し続け, 動いている物体は等速直線運動をする．
         \item \textbf{運動方程式}：物体の受ける合力の大きさ$F$ [N] は, 物体の加速度$a$ [m/s$^2$]と質量$m$ [kg] の積に等しい. 即ち, 
         \begin{equation}
-            F = ma \label{運動方程式}
+            \bm{F} = \bm{ma} \label{運動方程式}
         \end{equation}
         が成り立つ(本来この式は, 力や加速度の向きを含んで成立する).
         \item \textbf{作用, 反作用の法則}：物体Bが物体Aに力を及ぼすと, 物体Aは物体Bに同じ大きさで反対向きの力を及ぼす. 作用と反作用の力は，同じ作用線上で，反対向きになる．
@@ -509,7 +511,7 @@ title={#2},
 \subsection{つり合いと作用, 反作用}
 「力がつり合っている」とはどういうことでしょうか. これは次のように表現できます.
 \begin{freebox}{力のつり合い}
-    1つの物体に複数の力がはたらいていて, 物体にはたらく合力が0になるとき, それらの力はつり合っているという.
+    \textbf{1つの物体に複数の力がはたらいていて, 物体にはたらく合力が0になるとき, それらの力はつり合っているという}.
 \end{freebox}
 ここで, 少し運動の法則について考察を行います. 
 \begin{itemize}
@@ -744,11 +746,11 @@ title={#2},
 \begin{freebox}{$t$秒後の速度}
     初速度の向きを正の向きとする. 等加速度直線運動している物体の, 計測から$t$秒後の速度$v$は, 
     \begin{equation}
-        v = v_{0} + at \label{等加速度直線運動-速度}
+        \bm{v} = \bm{v_{0}} + \bm{at} \label{等加速度直線運動-速度}
     \end{equation}
     で与えられる. 
 \end{freebox}
-\eqref{等加速度直線運動-速度} 式より, 等加速度直線運動では, \textbf{縦軸を速度, 横軸を時刻としてグラフを書くと, 切片が$v_{0}$, 傾きが$a$となる一次関数が書ける}ということです. 
+\eqref{等加速度直線運動-速度} 式より, 等加速度直線運動では, \textbf{縦軸を速度, 横軸を時刻としてグラフを書くと, 切片が$\bm{v_{0}}$, 傾きが$\bm{a}$となる一次関数が書ける}ということです. 
 \begin{freebox}{速度と時刻のグラフ}
     等加速度直線運動について, 速度と時間の関係をグラフで表すと次のようになる. 
     \begin{center}
@@ -820,11 +822,11 @@ title={#2},
     \end{minipage}
     \end{tabular}
 \end{center}
-よって, \textbf{この長方形の面積和は, 物体の総移動距離を表している}ことが分かります. よって, 長方形の分割を限りなく小さくすれば\footnote{つまり, 時間をものすごく細かく区切れば}, その面積の和は正確な総移動距離を表すことになるでしょう. つまり, \textbf{グラフと時間軸で囲まれた部分の面積を求めれば, 物体の総移動距離を求めることができるということです}. 今回であれば, 底辺$t$, 高さ$v_{0}$の下の長方形と, 底辺$t$, 高さ$at$の三角形の面積の合計を考えることにより, 次が分かります.
+よって, \textbf{この長方形の面積和は, 物体の総移動距離を表している}ことが分かります. よって, 長方形の分割を限りなく小さくすれば\footnote{つまり, 時間をものすごく細かく区切れば}, その面積の和は正確な総移動距離を表すことになるでしょう. つまり, \textbf{グラフと時間軸で囲まれた部分の面積を求めれば, 物体の総移動距離を求めることができるということです}. $t$秒後であれば, 底辺$t$, 高さ$v_{0}$の下の長方形と, 底辺$t$, 高さ$at$の三角形の面積の合計を考えることにより, 次が分かります.
 \begin{freebox}{$t$秒後の移動距離}
     初速度の方向を正とする. 初速度$v_{0}$ [m/s],一定加速度$a$ [m/s$^2$]で等加速度直線運動している物体の物体の, 計測から$t$秒後の移動距離は, 
     \begin{equation}
-        x = v_{0}t + \frac{1}{2}at^2 \label{等加速度直線運動-位置}
+        \bm{x} = \bm{v_{0}t} + \bm{\frac{1}{2}at^2} \label{等加速度直線運動-位置}
     \end{equation}
     である. \textbf{つまり, 物体の移動距離は, 時刻の2次関数となることが分かる}. 
 \end{freebox}
@@ -874,7 +876,7 @@ title={#2},
 \begin{freebox}{速度と位置の関係}
 加速度$a$ [m/s$^2$] で等加速度直線運動する物体について, 時間を固定した際の位置, 速度の関係は以下である.
 \begin{equation}
-    v^2 - v_{0}^2 = 2ax \label{速度と位置の関係}
+    \bm{v^2} - \bm{v_{0}^2} = \bm{2ax} \label{速度と位置の関係}
 \end{equation}
 \end{freebox}
 この式により, 時間を固定した際の速度, 加速度, 位置の関係がひと目で分かります. 
@@ -898,11 +900,11 @@ title={#2},
 改めて正しい解釈を述べておきます. 
 \begin{freebox}{運動と力}
     \begin{itemize}
-        \item 「物体に力がはたらいている」$\Longleftrightarrow$ 「物体に加(減)速が生じる」
-        \item 「物体に力は実質はたらいてない(つり合っている場合を含む)」
+        \item \textbf{物体に力がはたらいている}$\Longleftrightarrow$ \textbf{物体に加(減)速が生じる}
+        \item \textbf{物体に力は実質はたらいてない(つり合っている場合を含む)}
         $\Longleftrightarrow$
-        「物体に加(減)速が生じない」
-        $\Longleftrightarrow$「物体が等速直線運動する(静止も含む)」
+        \textbf{物体に加(減)速が生じない}
+        $\Longleftrightarrow$ \textbf{物体が等速直線運動する(静止も含む)}
     \end{itemize}
 \end{freebox}
 よって, 等速直線運動している物体については, \eqref{等加速度直線運動-速度}, \eqref{等加速度直線運動-位置} 式において, 加速度$a=0$としたものを考えれば良く, 次の関係式を得られます. 速度が一定なため当たり前に思えるのではないでしょうか. 
@@ -910,8 +912,8 @@ title={#2},
 \begin{freebox}{等速直線運動している物体の速度と移動距離}
 初速度の向きを正とする. 初速度$v_{0}$ [m/s]で等速直線運動している物体の, 計測から$t$秒後の速度$v$ [m/s]と, 移動距離$x$ [m]は以下で与えられる.
 \begin{align}
-    v &= v_{0}, \label{等速直線運動-位置}\\
-    x &= v_{0}t. \label{等速直線運動-位置}
+    \bm{v} &= \bm{v_{0}}, \label{等速直線運動-位置}\\
+    \bm{x} &= \bm{v_{0}t}. \label{等速直線運動-位置}
 \end{align}
 \end{freebox}
 よって, $x$-$t$グラフ, $v$-$t$グラフは次のようになります.
@@ -1034,7 +1036,7 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
 \end{equation}
 という指標を導入します. これを仕事といい, 物理的にどれだけ頑張ったかを表すと考えられます. 
 \begin{freebox}{仕事の定義}
-    $\text{仕事[J]} = \text{加えた力の大きさ [N]}\times \text{加えた力の方向に動かした距離 [m]}$
+    $\textbf{仕事[J]} = \textbf{加えた力の大きさ [N]}\times \textbf{加えた力の方向に動かした距離 [m]}$
 \end{freebox}
 仕事の単位は J：ジュールで表されます. 次のような例を考えてみましょう. 重力加速度を10 [m/s$^2$] とします. 
 \begin{exbox}{仕事の例}
@@ -1080,12 +1082,12 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
         % force
         \path[draw, thick, -stealth](5,1.5)node{$\bullet$}to node[midway, above] {5N}(8,1.5);
         % gravity
-        \path[draw, thick, -stealth](G)node{$\bullet$}to($(G)-4*(V2)$)node[below right]{重力};
+        \path[draw, thick, -stealth](G)node{$\bullet$}to($(G)-4*(V2)$)node[right]{重力};
         % resistance
         \path[draw, thick, -stealth](C)node{$\bullet$}to ($(C)-3*(V1)$)node[below]{摩擦力};
         % 垂直抗力と作用, 反作用
         \path[draw, thick, -stealth](C)to ($(C)+4*(V2)$)node[above]{垂直抗力};
-        \path[draw, dashed, -stealth](C)to ($(C)-4*(V1)$)node[below]{$F$};
+        \path[draw, dashed, -stealth](C)to ($(C)-4*(V2)$)node[below]{$F$};
     \end{tikzpicture}
     \end{minipage}&
     \begin{minipage}{6cm}
@@ -1115,7 +1117,7 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
  
 重力加速度を10m/s$^2$として, 次のような例を考えてみましょう. 
 \begin{exbox}{仕事の原理の例}
-   水平面に置かれた質量10kgの物体を, 重力とつり合うようにして垂直に3m持ち上げるとき, 手で持ち上げる場合と, 軽い定滑車, 軽い動滑車を使って持ち上げる場合を考えます.
+   水平面に置かれた質量10kgの物体を, ゆっくり垂直に3m持ち上げるとき, 手で持ち上げる場合と, 軽い定滑車, 軽い動滑車を使って持ち上げる場合を考えます.
    \begin{center}
     \begin{tabular}{ccc}
     手を使う場合 & 定滑車を使う場合 & 動滑車を使う場合\\
@@ -1242,18 +1244,18 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
 \begin{freebox}{仕事率}
     仕事率とは, 1秒間に行った(または受けた)仕事の大きさをいう. 式で書くと
     \begin{equation}
-        仕事率[W] = \frac{\text{物体に行った(または物体が受けた)仕事 [J]}}{仕事をするのにかかった時間 [s]} \label{仕事率}
+        \textbf{仕事率[W]} = \frac{\textbf{物体に行った(または物体が受けた)仕事 [J]}}{\textbf{仕事をするのにかかった時間 [s]}} \label{仕事率}
     \end{equation}
     である. 
 \end{freebox}
  
 例えば, 仕事の原理の例において, 持ち上げるに10秒かかっているなら, $300/10 = 30$ [W]が仕事率です. 
 
-ところで仕事率の単位は, 上述の通り[W]となっています. これはなぜでしょうか. 物理で, $\text{[J]} = \text{[W]} \cdot \text{[s]}$となっていることを習ったと思います. つまり, [W]は[J]を秒数[s]で割ったものに等しいということです. 
+ところで仕事率の単位は, 上述の通り[W]となっています. これはなぜでしょうか. 物理で, $\text{[J]} = \text{[W]} \cdot \text{[s]}$となっていることを習ったと思います. 今回, [J]を秒数[s]で割ったため, [W]が登場するわけです. 
 \subsection{保存力}
 ここで, 仕事とその経路の関係によって, 力を分類することができるため紹介します.  
 \begin{freebox}{保存力}
-その力がする仕事が経路に依らないとき, その力を保存力という. 保存力は, 物体の位置変化だけで仕事が決まるような力と言い換えられる.
+\textbf{その力がする仕事が経路に依らないとき, その力を保存力という}. 保存力は, 物体の位置変化だけで仕事が決まるような力と言い換えられる.
 \end{freebox}
 この定義だけでの理解は難しいでしょう. 例により比較してみましょう. 
 \begin{exbox}{保存力とそうでない力の例}
@@ -1325,7 +1327,7 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
 \begin{freebox}{物体の運動エネルギー}
     速さ$v$ [m/s]を持つ質量$m$ [kg] の物体が持つ運動エネルギーは, 
     \begin{equation}
-        \frac{1}{2}mv^2 \label{運動エネルギー}
+        \bm{\frac{1}{2}mv^2} \label{運動エネルギー}
     \end{equation}
     で与えられる.
 \end{freebox}
@@ -1351,7 +1353,7 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
 \begin{freebox}{物体の重力による位置エネルギー}
     基準点から高さ$h$ [m] にある質量$m$ [kg] の物体の持つ位置エネルギーは
     \begin{equation}
-        mgh \label{位置エネルギー}
+        \bm{mgh} \label{位置エネルギー}
     \end{equation}
     で与えられる.
 \end{freebox}
@@ -1369,10 +1371,16 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
 \begin{freebox}{力学的エネルギーの保存}
     保存力以外の力が仕事をしないとき, 運動エネルギーと, 位置エネルギーの和, 即ち力学的エネルギーは一定値である. つまり以下が成り立つ, 
     \begin{equation}
-        \frac{1}{2}mv^2 + mgh = 一定値. 
+        \bm{\frac{1}{2}mv^2} + \bm{mgh} = \textbf{一定値}. 
     \end{equation}
 \end{freebox}
-この文書では, なぜ力学的エネルギーが一定値になるかの説明はしないことにします. 
+この文書では, なぜ力学的エネルギーが一定値になるかの説明はしないことにします. 直感的には次のように捉えられるでしょう.
+\begin{itemize}
+    \item 速さが増える代わりに, 位置が低くなることで合計を一定に保とうとする. 
+    \item 位置が低くなる代わりに, 速さが増えることで合計を一定に保とうとする. 
+    \item 速さが減る代わりに, 位置が高くなることで合計を一定に保とうとする. 
+    \item 位置が高くなる代わりに, 速さが減ることで合計を一定に保とうとする. 
+\end{itemize}
 \begin{exbox}{力学的エネルギー保存則の例}
     空気抵抗がないとして, 図のような
     あらい平面と, 両端に滑らかな高さ$h$の曲面が繋がった装置を考えます. 最下点の高さを位置エネルギーの基準とし, 高さ$h$の地点で, 質量$m$ [kg]の球から静かに手を離します.
@@ -1410,12 +1418,18 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
         \end{tikzpicture}
     \end{center}
     \begin{enumerate}
+        \item このとき, 力学的エネルギー保存則から
+        \begin{itemize}
+            \item 高さ$h$ [m]の地点で位置エネルギーが最大, 運動エネルギーが0.
+            \item 高さ0 [m]の地点で位置エネルギーが0, 運動エネルギーが最大.
+        \end{itemize}
+        となることがわかります. 
         \item しばらく球が運動し, 高さ$h_{1}$ [m] ($h_{1} < h$)まで到達した際の速さを求めてみましょう. 求める速さを$v_{1}$ [m/s] とすると, 力学的エネルギーの保存則から, 
         \begin{equation}
             mgh = \frac{1}{2}mv_{1}^2 + mgh_{1}.
         \end{equation}
         これより, $v_{1} = \sqrt{2g(h - h_{1})}$ [m/s]を得ます. つまり, $h_{1}$が小さい$\Longleftrightarrow$ 位置が低くなるほど, 球の速さが大きくなることが式からも分かります. 
-        \item 地面に到達した瞬間の速さを求めてみましょう. 求める速さを$v_{2}$ [m/s]とすると, 力学的エネルギーの保存則から, 
+        \item 最下点に到達した瞬間の速さを求めてみましょう. 求める速さを$v_{2}$ [m/s]とすると, 力学的エネルギーの保存則から, 
         \begin{equation}
             mgh = \frac{1}{2}mv_{2}^2.
         \end{equation}
@@ -1427,7 +1441,7 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
             mgh-E = mgh_{3}.\quad h_{3}= h - \frac{E}{mg} \ \text{[m]} \label{temp_力学的エネルギーの保存}
         \end{equation}
         となります. \textbf{つまり, あらい斜面を挟めば, 到達できる高さが$h$よりも減ってしまう}わけです. 
-        \item 物体が$h_{3}$ [m]の地点に到達するまでに, 垂直抗力が物体にした仕事の大きさは何Jとなるでしょう. 
+        \item 物体が$h$ [m]の地点から$h_{3}$ [m]の地点に到達するまでに, 垂直抗力が物体にした仕事の大きさは何Jとなるでしょう. 
         
         垂直抗力は, 面に垂直な方向にはたらきますが, 一連の運動で, 面に垂直な方向に物体は動いていないため, 垂直抗力が物体にした仕事の大きさは0[J]です.
     \end{enumerate}
@@ -1446,13 +1460,13 @@ $\mu \times 垂直抗力の大きさ$」で表されることを学びます. �
 \section{運動量とその保存}
 こちらは完全に高校物理の内容となりますが, 運動量というものにも保存則が成り立つため紹介しようと思います. 保存則の導出の際には作用, 反作用の法則が重要になります. 
 \begin{freebox}{運動量}
-    速度$v$ [m/s]で運動する質量$m$ [kg]の物体について, $mv$を運動量という.
+    速度$v$ [m/s]で運動する質量$m$ [kg]の物体について, $\bm{mv}$\textbf{を運動量という}.
 \end{freebox}
 運動量はエネルギーと違い, 向きまで扱うことができるという点で柔軟性があります. また, 運動量について, 物体たちにはたらく外力の合力が0である限り, 保存則が成り立ちます.  
 \begin{freebox}{運動量保存則}
     質量$m_{1}$ [kg]で速度$v_{1}$ [m/s$^2$]の物体1が, 質量$m_{2}$ [kg] で速度$v_{2}$で運動する物体2と衝突したのち, それぞれの速度が$v_{1}'$ [m/s], $v_{2}'$ [m/s]になったとする. このとき, 運動量について以下が成り立つ.
     \begin{equation}
-        m_{1}v_{1} + m_{2}v_{2} = m_{1}v_{1}' + m_{2}v_{2}' \label{運動量保存則}
+        \bm{m_{1}v_{1}} + \bm{m_{2}v_{2}} = \bm{m_{1}v_{1}'} + \bm{m_{2}v_{2}'} \label{運動量保存則}
     \end{equation}
     \begin{center}
     \begin{tabular}{ccc}
@@ -1519,13 +1533,13 @@ F(t_{1} - t_{0}) = mv_{1} - mv_{0}
 \begin{freebox}{力積}
 時刻$t_{0}$ [s]から時刻$t_{1}$ [s]の, $\Delta t = t_{1}-t_{0}$ 秒間に, 物体に一定の力$F$ [N] がはたらいたとする. このとき, 
 \begin{equation}
-    F\Delta t
+    \bm{F\Delta t}
 \end{equation}
 を力積という. また, 上での考察のように, 
 \begin{equation}
-    F\Delta t = mv_{1} - mv_{0}
+    \bm{F\Delta t} = \bm{mv_{1}} - \bm{mv_{0}}
 \end{equation}
-が成り立ち, \textbf{力積は$\Delta t$秒間での運動量の変化を表している}. 尚, 力積は向きを含んでいることにも注意せよ.
+が成り立ち, \textbf{力積は$\bm{\Delta t}$秒間での運動量の変化を表している}. 尚, 力積は向きを含んでいることにも注意せよ.
 \end{freebox}
 それでは運動量保存則の導出です. 物体1と物体2が接触するとき, (ごく短い)時間$\Delta t$秒間で, 作用, 反作用の法則より, 物体1と物体2は, 大きさが同じ, 向きが反対向きで一直線上にある力$F$を受けます\footnote{$\Delta t$が十分小さいものとし, その間$F$の大きさは一定としています.}. 
 \begin{center}
@@ -1549,6 +1563,7 @@ F(t_{1} - t_{0}) = mv_{1} - mv_{0}
         \draw(M)node{$\bullet$};
     \end{tikzpicture}
 \end{center}
+\vspace{-4mm}
 よって, 物体それぞれの力積は, 物体1の受ける力の向きを正として, 
 \begin{equation}
 \begin{cases}
@@ -1562,8 +1577,8 @@ F(t_{1} - t_{0}) = mv_{1} - mv_{0}
 \end{equation}
 を得ます. 
 
-次のような例を考えてみましょう. 
-\begin{exbox}{運動量保存則の例}
+次のような例題を考えてみましょう. 
+\begin{exbox}{運動量保存則の例題}
 滑らかな水平面において, 質量$M$ [kg]で, 速度$v_{1}$で運動していた物体1が, 静止していた質量$m$ [kg]の物体2にぶつかった. 
 \begin{center}
     \begin{tabular}{cc}
@@ -1603,7 +1618,7 @@ F(t_{1} - t_{0}) = mv_{1} - mv_{0}
     \end{tabular}
 \end{center}
 \begin{enumerate}
-    \item 衝突直後, 滑らかな水平面上を2つの物体が一体となって運動し始めたとするとき, 2つの物体の速度を求めよ.
+    \item 衝突直後, 滑らかな水平面上を2つの物体が一体となって運動し始めたとするとき, 2つの物体の速度を求めなさい.
     
     一体になったため, 速度が同じになる. 運動量保存則から, 同じ速度になったときの速度を$v$とすると,
     \begin{equation}
@@ -1611,24 +1626,24 @@ F(t_{1} - t_{0}) = mv_{1} - mv_{0}
     \end{equation}
     \item 衝突直後, 物体1と物体2が一体となって, 動摩擦係数が$\mu$の水平面に突入したとする. それぞれの物体が, 止まるまでに進む距離を求めなさい. 
     
-    (1)より, あらい水平面に突入する際の初速度は$\frac{M}{M+m}v_{1}$ [m/s]です. 
+    (1)より, あらい水平面に突入する際の初速度は$\frac{M}{M+m}v_{1}$ [m/s]です. 作用, 反作用の法則による力を$F$ [N]とします.
     \begin{itemize}
     \item 物体1について運動方程式を立てると, 
     \begin{itemize}
         \item 鉛直方向：$Mg - N_{1} = 0$. $N_{1}$は物体1の受ける垂直抗力.
-        \item 水平方向：$-\mu N_{1} = Ma$. $a = -\mu g$. 進行方向を正とした.
+        \item 水平方向：$-\mu N_{1} - F= Ma$. 進行方向を正とした.
     \end{itemize}
     \item 物体2について運動方程式を立てると, 
     \begin{itemize}
         \item 鉛直方向：$mg - N_{2} = 0$. $N_{2}$は物体2の受ける垂直抗力.
-        \item 水平方向：$-\mu N_{2} = ma$. $a = -\mu g$. 進行方向を正とした.
+        \item 水平方向：$-\mu N_{2} + F= ma$. 進行方向を正とした.
     \end{itemize}
     \end{itemize}
-    といっても, 2つを質量$M + m$ [kg]の１つの物体と見なして運動方程式を立てれば同様の結論を得られます. 停止するときは速度が0になるため, \eqref{速度と位置の関係} 式より, 停止するまでに進む距離を$x$ [m]とすると(2つとも同じ距離だけ進みます),
+    水平方向についての運動方程式を足し合わせれば$a = -\mu g$を得ます. 尚, 2つを質量$M + m$ [kg]の１つの物体と見なして運動方程式を立てれば同様の結論を得られます. 停止するときは速度が0になるため, \eqref{速度と位置の関係} 式より, 停止するまでに進む距離を$x$ [m]とすると(2つとも同じ距離だけ進みます),
     \begin{equation}
-    0^2 - \left(\frac{M}{M+m}v_{1}\right)^2 = 2\cdot (-\mu g)x.\quad x = \frac{M^2}{2\mu(M+m)^2g}v_{1}^2\ \text{[m]}.
+    0^2 - \left(\frac{M}{M+m}v_{1}\right)^2 = 2\cdot (-\mu g)x.\quad x = \frac{M^2v_{1}^2}{2\mu(M+m)^2g}\ \text{[m]}.
     \end{equation}
-    \item 衝突直後, 物体1は停止し, 物体2のみが運動し始めたとき, 物体2の速度と, 運動エネルギーを計算せよ.
+    \item 衝突直後, 物体1は停止し, 物体2のみが運動し始めたとき, 物体2の速度と, 運動エネルギーを計算しなさい.
     
     運動量保存則から, 物体2が運動しているときの速度を$v'$とすると,
     \begin{equation}
@@ -1642,9 +1657,19 @@ F(t_{1} - t_{0}) = mv_{1} - mv_{0}
     
     力学的エネルギーの保存から, 最高点$h$ [m]での速さが0になると考えて, 
     \begin{equation}
-        \frac{M^2}{2m}v_{1}^2 = mgh.\quad h = \frac{M^2}{2m^2g}v_{1}^2\ \text{[m]}.
+        \frac{M^2}{2m}v_{1}^2 = mgh.\quad h = \frac{M^2v_{1}^2}{2m^2g}\ \text{[m]}.
     \end{equation}
 \end{enumerate}
 \end{exbox}
-
+\section{ちょっとしたテクニック}
+今後, 問題を解いた際に, 解答が複雑になることが増えてくるでしょう. そのときに意識すると良いこととして, 次のようなアドバイスをしておきます.
+\begin{itemize}
+    \item \textbf{単位を考える}：
+    例えば, 直前の例題の(2)では, 距離を聞かれているため, 答えの単位は[m] \medbreak
+    となるはずです. $\dfrac{M^2}{2\mu (M+m)^2g}v_{1}^2$について, 単位を確認すると, $\dfrac{\text{[kg]}^2}{\text{[kg]}^2\cdot \text{[m/s$^2$]}}\text{[m/s]}^2$. [kg]$^2$\medbreak
+    がキャンセルされ, $\dfrac{\text{[m/s]}^2}{\text{[m/s$^2$]}} = \dfrac{\text{[m]}^2}{\text{[s]}^2} \div \dfrac{\text{[m]}}{\text{[s]}^2} = \text{[m]}$ となるため, 正しそうだと考えられます.\medskip
+    \item \textbf{符号(向き)を考える}：例えば, $M > m > 0$ [kg], $v > 0$ [m/s] のときに, 物体の速度が\medbreak
+    $\dfrac{M}{m-M}v$ [m/s]で与えられたとします. $m-M < 0$のため, この速度は負です. よって, 速\medbreak
+    さを答える際には$\dfrac{M}{M-m}v$ [m/s]となります.
+\end{itemize}
 \end{document}
