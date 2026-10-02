@@ -6,9 +6,10 @@
 \usepackage{mathtools}% 参照する式以外は番号を振らない
 \usepackage{bm}% 数式太字
 \usepackage{okumacro} % ルビ
+\numberwithin{equation}{section} %式番号にsection番号をつける
 \mathtoolsset{showonlyrefs=true}
 \usepackage{tikz,tikzpeople}
-\usetikzlibrary{intersections,calc,arrows.meta,patterns,cd, angles}
+\usetikzlibrary{intersections,calc,arrows.meta,patterns,cd, angles, decorations.markings,decorations.pathmorphing}
 \tcbuselibrary{breakable,theorems,skins}% tcolorboxのオプション
 % 色の定義
 \definecolor{nomesihana}{cmyk}{.8,.6,.46,.03}
@@ -65,11 +66,9 @@ title={#2},
 \renewcommand{\labelenumi}{(\arabic{enumi})}
 \begin{document}
 \begin{center}
-    \Large ちょっとだけディープな物理入門
+    \LARGE ちょっとだけディープな物理入門
 \end{center}
 \tableofcontents
-
-\newpage
 
 \section{はじめに}
 主に物理に初めて触れる人のために, 力, 仕事とエネルギーの関係について解説しました. また, 微積分学との関連に関しても, 有害でない程度に説明を加えました. 物理学は数学とのつながりが分かりやすい学問でもあると思いますが, それを体感する機会になれば良いと思います. 力の図示が必要な場面では, 見やすさのために作用点をずらしている場合があります. また, 分かり易さのため, 多少不正確な説明となる場面がありますが, ご了承ください. まず, 今後多く使う記法について軽く紹介しておきます. 
@@ -478,7 +477,7 @@ title={#2},
 \end{freebox}
 慣性という言葉が出てきましたが, 物体の慣性とは次のような性質を指します.
 \begin{freebox}{慣性}
-    物体は, 物体は現在の運動の状態を保っていたいという性質を持っており, この性質を慣性という.
+    物体は, 物体は現在の運動の状態を保っていたいという性質を持っており, この性質を\textbf{慣性}という.
 \end{freebox}
 慣性はどの物体も持っており, 身近に感じられるものだと思います. これをきっかけに, 普段起きている現象がなぜ, どのようにして起こっているかを考えてみてほしいと思います.
 \begin{exbox}{慣性が現れる現象の例}
@@ -1252,7 +1251,7 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
 例えば, 仕事の原理の例において, 持ち上げるに10秒かかっているなら, $300/10 = 30$ [W]が仕事率です. 
 
 ところで仕事率の単位は, 上述の通り[W]となっています. これはなぜでしょうか. 物理で, $\text{[J]} = \text{[W]} \cdot \text{[s]}$となっていることを習ったと思います. 今回, [J]を秒数[s]で割ったため, [W]が登場するわけです. 
-\subsection{保存力}
+\subsection{保存力}\label{保存力}
 ここで, 仕事とその経路の関係によって, 力を分類することができるため紹介します.  
 \begin{freebox}{保存力}
 \textbf{その力がする仕事が経路に依らないとき, その力を保存力という}. 保存力は, 物体の位置変化だけで仕事が決まるような力と言い換えられる.
@@ -1323,7 +1322,7 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
 \end{exbox}
 ここからしばらく, 代表的なエネルギーについて紹介, 考察が続きます. 
 \subsection{物体の運動エネルギー}
-自分が道にボケーッと\footnote{別にボケーッとしていなくても良いけれど}立っているとして, 突進するおすもうさんとぶつかったら, 自分はふっ飛ばされてしまうでしょう. つまり, 私は力を加えられ, 動かされた$\Longleftrightarrow$ 仕事をされたことになります. このように, 運動する物体は, 他の物体に対して仕事を行う能力があり, それを運動エネルギーといいます. 運動エネルギーは, 次のような式で与えられることが知られています. 
+自分が道にボケーッと\footnote{別にボケーッとしていなくても良いけれど}立っているとして, 突進するおすもうさんとぶつかったら, 自分はふっ飛ばされてしまうでしょう. つまり, 私は力を加えられ, 動かされた$\Longleftrightarrow$ 仕事をされたことになります. このように, \textbf{運動する物体は, 他の物体に対して仕事を行う能力があり, それを運動エネルギーといいます}. 運動エネルギーは, 次のような式で与えられることが知られています. 
 \begin{freebox}{物体の運動エネルギー}
     速さ$v$ [m/s]を持つ質量$m$ [kg] の物体が持つ運動エネルギーは, 
     \begin{equation}
@@ -1349,7 +1348,7 @@ $v-t$グラフと時間軸で囲まれた部分の面積は, \ref{等加速度�
 \end{equation}
 となります. この式の左辺は, 「$\text{力}\times \text{距離}$」つまり, 私が物体を止めるまでに, 物体が私にした仕事の大きさを表しています(作用, 反作用の法則より, 私も$F$ [N]の力を受けている). よって, 速さ$v_{0}$ [m/s]で運動する質量$m$ [kg]の物体は, $\frac{1}{2}mv_{0}^2$の仕事をする能力があることが分かります. 
 \subsection{物体の位置エネルギー}
-唐突ですが, 道で歩いていて, 空から動物のカバが降ってきたら, 私は潰されてしまう, つまり, カバから仕事をされることになるでしょう(どんな世界線なんだ). このように, (基準より)高い位置にある物体は, 他の物体に仕事をする能力があり, それを重力による位置エネルギーといいます. 重力加速度を$g$ [m/s$^2$]として, 式で書くと次のようになります.
+唐突ですが, 道で歩いていて, 空から動物のカバが降ってきたら, 私は潰されてしまう, つまり, カバから仕事をされることになるでしょう(どんな世界線なんだ). このように, \textbf{(基準より)高い位置にある物体は, 他の物体に仕事をする能力があり, それを重力による位置エネルギーといいます}. 重力加速度を$g$ [m/s$^2$]として, 式で書くと次のようになります.
 \begin{freebox}{物体の重力による位置エネルギー}
     基準点から高さ$h$ [m] にある質量$m$ [kg] の物体の持つ位置エネルギーは
     \begin{equation}
@@ -1457,6 +1456,363 @@ $\mu \times 垂直抗力の大きさ$」で表されることを学びます. �
     \item 今回摩擦力のした仕事の大きさは, $摩擦力 \times x = \mu mgx$と表される. 
 \end{itemize}
 }ことが見て取れます. 特に, (あらい)水平面の長さ$x$を, $x = \frac{h}{\mu}$ [m]に設定すれば, 球は水平面の右端で止まってしまうことが分かります.
+\section{ばねの弾性と弾性エネルギー}
+エネルギーに触れたところで, 少し唐突かもしれませんが, ばねについても考察を深めてみましょう. ばねは, 弾性や弾性力という概念の良い例になっています. 
+\subsection{ばねの弾性とフックの法則}
+ばねには, 
+\begin{itemize}
+    \item 伸ばすと縮んで元の長さに戻ろうとする.
+    \item 縮めると伸びて元の長さに戻ろうとする.
+\end{itemize}
+という性質があります. このように, \textbf{変形された物体が元の状態に戻ろうとする性質を弾性といい, その結果現れる力を弾性力といいます}. ばねの弾性力については次の法則が有名です. 
+\begin{freebox}{フックの法則}
+    ばねの弾性力は, ばねの伸び(縮み)に比例する. すなわち, 自然長からのばねの伸び(縮み)を$x$ [m], ばねに生じる弾性力を$F$ [N]とし, ばねを伸ばす方向を正とすると, 
+    \begin{equation}
+        \bm{F} = -\bm{kx}\quad (k > 0 \text{ [N/m] は定数で, ばね定数と呼ばれる}) \label{ばねの基本式}
+    \end{equation}
+    という関係がある. これは向きを含んだ式である. つまり(ばねの)弾性力は変化の方向と反対向きにはたらくということである. 
+\end{freebox}
+\begin{exbox}{フックの法則の例}
+    1Nの力を加えると0.1 [m] 伸びるばねがあり, ばねの自然長は$0.2$ [m]である. このとき, 
+    \begin{enumerate}
+        \item ばね定数$k$は, 1mばねを伸ばした際に生じる弾性力の大きさを表すため, $k = 10$ [N / m]です. 
+        \item ばねの長さが0.5mになったとき, ばねにはたらく弾性力の大きさは, ばねののびが0.3mであることから, (弾性力も1Nの3倍の) 3 [N]となることがわかります. 尚, \eqref{ばねの基本式} 式を用いると,
+        \begin{equation}
+            F = -10 \cdot 0.3 = -3 \text{[N]}
+        \end{equation}
+        が得られます. つまりばねが縮む方向に3Nの力がはたらくということです. 
+        \item ばねの長さが0.1mになったとき, ばねの伸びは$-0.1$ [m]です. よって\eqref{ばねの基本式} 式を用いると, 
+        \begin{equation}
+            F = -10 \cdot (-0.1) = 1 \text{[N]}
+        \end{equation}
+        が得られます. つまりばねが伸びる方向に1Nの力がはたらくということです.
+    \end{enumerate}
+\end{exbox}
+\eqref{ばねの基本式} 式を見て分かるように, ばねののびと, ばねにはたらく弾性力の大きさをグラフにすると, 次のように比例の直線が書けます. 
+\begin{freebox}{フックの法則のグラフ}
+
+\centering
+\begin{tikzpicture}[scale=0.4]
+    % axis
+    \coordinate[label=below left:O](O)at(0,0);
+    \coordinate[label=right:{ばねの伸び $x$ [m]}](t)at(10,0);
+    \coordinate[label=above:{ばねの弾性力 $F$ [N]}](x)at(0,8);
+    \path[draw, -stealth](-1,0)to(t);
+    \path[draw, -stealth, name path = X](0,-1)to(x);
+    % velocity
+    \path[draw, thick]plot[domain = 0:8]({\x}, {\x})node[right]{$F = kx$}to(O);
+\end{tikzpicture}
+\end{freebox}
+これは完全に高校生向けの説明となりますが, 水に物体を沈め, 手を離すと, 浮力により単振動という運動が起こります. このときは水を一種のばねとしてみなすことができます. 
+\subsection{ばねの弾性エネルギー}
+$x$ [m]だけ伸びた(縮んだ)ばねは, 物体にどれだけの仕事を行えるでしょうか. つまり, ばねが$x$ [m]だけ伸びた(縮んだ)際に, ばねの持つエネルギーはどのように表せるでしょうか. 例のごとく(？)ばねの弾性力と伸びのグラフについて, グラフと軸に囲まれた面積を考察してみましょう. 
+\begin{center}
+\begin{tabular}{cc}
+    長方形に分割 & 長方形の分割を細かくする\\
+    \begin{minipage}{7cm}
+    \begin{center}
+    \begin{tikzpicture}[scale=0.37]
+        % axis
+        \coordinate[label=below left:O](O)at(0,0);
+        \coordinate[label=below left:{ばねののび $x$ [m]}](t)at(10,0);
+        \coordinate[label=above:{弾性力 $F$ [N]}](x)at(0,8);
+        \path[draw, -stealth](-1,0)to(t);
+        \path[draw, -stealth, name path = X](0,-1)to(x);
+        % velocity
+        \path[draw, name path=C1]plot[domain = 0:10]({\x}, {0.5*\x})node[right]{$F = kx$};
+        % 区分求積
+        \foreach \x in {0,1,2,...,8}
+        {
+            \path[draw, fill = lightgray](\x,0)to(\x,{0.5*\x})to(\x+1,{0.5*\x})to(\x+1,0)--cycle; 
+        }  
+    \end{tikzpicture}
+    \end{center}
+    \end{minipage}&
+    \begin{minipage}{7cm}
+    \begin{center}
+    \begin{tikzpicture}[scale=0.37]
+        % axis
+        \coordinate[label=below left:O](O)at(0,0);
+        \coordinate[label=below left:{ばねののび $x$ [m]}](t)at(10,0);
+        \coordinate[label=above:{弾性力 $F$ [N]}](x)at(0,8);
+        \path[draw, -stealth](-1,0)to(t);
+        \path[draw, -stealth, name path = X](0,-1)to(x);
+        % velocity
+        \path[draw, name path=C1]plot[domain = 0:10]({\x}, {0.5*\x})node[right]{$F = kx$};
+        %区分求積
+        \foreach \x in {0,1,2,...,44}
+        {
+            \path[draw,fill=lightgray]({\x/5},0)to({\x/5},{0.5*(\x/5)})to({(\x+1)/5},{0.5*(\x/5)})to({(\x+1)/5},0)--cycle;
+        }
+    \end{tikzpicture}
+    \end{center}
+    \end{minipage}
+    \end{tabular}
+\end{center}
+一つ一つの長方形の面積は, $「弾性力の大きさ」\times「伸ばしたばねの長さ」$を表しているため,区切った区間で, ばねが物体に行う仕事の大きさを表すはずです. よって, \textbf{この長方形の面積和は, ばねが$x$だけ伸びる間に, ばねが物体に行う仕事の大きさを表している}ことが分かります. よって, 長方形の分割を限りなく小さくすれば, その面積の和は正確な仕事の大きさを表すことになるでしょう. つまり, \textbf{グラフと伸びの軸で囲まれた部分の面積を求めれば, ばねが$x$だけ伸びる間に, ばねが物体に行う仕事を求めることができるということです}. ばねが$x$[m]伸びるとき, 底辺$x$, 高さ$kx$の三角形の面積を考えることにより, 次が分かります.
+\begin{freebox}{ばねの弾性エネルギー}
+ばねを変化させた際に. ばねが持つエネルギーを\textbf{ばねの弾性エネルギー}という. ばね定数$k$ [N/m]であるばねの弾性エネルギーの大きさは, そのばねを自然長から$x$ [m]だけ変化させたとき, 
+\begin{equation}
+    \bm{\frac{1}{2}kx^2}\label{ばねの弾性エネルギー}
+\end{equation}
+で与えられる. 単位は[J]である. 尚, 積分を知っているなら$\int_{0}^{x}kxdx$を計算すれば良い.
+\end{freebox}
+\eqref{ばねの弾性エネルギー} 式から分かるように, ばねの弾性力は保存力\footnote{保存力については\ref{保存力} 節を参照してください.}の一種です. つまり, ばねの伸ばし方(縮ませ方)によらず, 結果ばねをどれだけ伸ばした(縮めた)かによって仕事が決まります. 
+\subsection{ばねの弾性エネルギーを含めた保存則}
+ばねの弾性力は保存力のため, 力学的エネルギーに, ばねの弾性エネルギーを加えたものを考えても, 保存則が成り立ちます. \textbf{また, ばねの弾性エネルギーを含めて, 力学的エネルギーと呼ぶ場合があります}. 
+\begin{exbox}{ばねの弾性エネルギーを含めた力学的エネルギー保存則の例}
+    なめらかな水平面に置かれたばね定数$k$ [N/m]の軽いばねがあり, その先端に質量$m$ [kg]の物体を取り付けた.
+    \begin{center}
+    \begin{tikzpicture}
+    \fill[black! 20](-4,-0.5) rectangle(-3,0.5);
+    \draw (-3,0.5) -- (-3,-0.5);
+    \draw (-3,0) -- (-2.8,0);
+    \draw (-3,-0.5)--(1.5,-0.5);
+    \draw (0.5,-0.5)node[below]{O};
+    \draw[decorate,decoration={coil,amplitude=9pt}] (-2.8,0) -- (0,0);
+    \draw (-1.5,0.3) node[above] {$k$};
+    \draw (0.5,0) circle(0.5);
+    \draw (0.5,0.5) node[above]{$m$};
+    \end{tikzpicture}
+    \end{center}
+    \begin{enumerate}
+        \item ばねを自然長から$x$ [m]だけのばし, 静かに手を離した. 
+        \begin{enumerate}
+        \item ばねが自然長に戻る際の物体の速さを求めなさい.
+         
+        力学的エネルギー保存則から, 自然長に戻る際の速さを$v$ [m/s]とすると, 
+        \begin{equation}
+            \frac{1}{2}kx^2 = \frac{1}{2}mv^2,\  v = \pm\sqrt{\frac{k}{m}}x.\ v > 0より,\ v = \sqrt{\frac{k}{m}}x \ \text{[m/s]}.
+        \end{equation}
+        \item ばねが縮みきった際, ばねは自然長から何m縮むことになるか. 
+        
+        力学的エネルギー保存則から, 縮みきったときの自然長からの縮みを$y$ [m]とすると,
+        \begin{equation}
+            \frac{1}{2}ky^2 = \frac{1}{2}kx^2,\  y = \pm x.\ よって, x \text{[m]}だけ縮む. 
+        \end{equation}
+        \end{enumerate}
+        \item 次のように, ばねの乗った水平面になめらかな高さ$h$ [m] の斜面を接続した.
+        \begin{center}
+        \begin{tikzpicture}
+        \fill[black! 20](-4,-0.5) rectangle(-3,0.5);
+        \draw (-3,0.5) -- (-3,-0.5);
+        \draw (-3,0) -- (-2.8,0);
+        \path[draw, fill = lightgray](-3,-0.5)to(2.5,-0.5)to(7,2)to(7,-0.5) to (1.5, -0.5);
+        \draw (0.5,-0.5)node[below]{O};
+        \draw[decorate,decoration={coil,amplitude=9pt}] (-2.8,0) -- (0,0);
+        \draw (-1.5,0.3) node[above] {$k$};
+        \draw (0.5,0) circle(0.5);
+        \draw (0.5,0.5) node[above]{$m$};
+        \path[draw](7,-0.5)to[bend right=25]node[fill=nomesihana!4!white, midway] {$h$}(7,2);
+        \end{tikzpicture}
+        \end{center}
+        ばねを自然長から$x$ [m]だけ縮ませてから, 静かに手を離した. 
+        \begin{enumerate}
+            \item 運動の途中で物体がばねを離れ, 斜面の中点に到達するとき, その地点での物体の速さを求めなさい. 
+            
+            求める速さを$v_{M}$とする. 中点は高さ$h/2$ [m]の地点となるから, 力学的エネルギー保存則より
+            \begin{equation}
+                \frac{1}{2}kx^2 = \frac{1}{2}mv_{M}^2 + mg\cdot \left(\frac{h}{2}\right).\ よって,\ v_{M} = \pm\sqrt{\frac{1}{m}(kx^2-mgh)}.
+            \end{equation}
+            $v_{M} > 0$より, $\displaystyle v_{M} = \sqrt{\frac{1}{m}(kx^2-mgh)}$ [m/s].\medskip
+            \item ばねの縮みが小さいと, 物体の速度が足りず, 高さ$h$の地点に到達できないことが予想される. 高さ$h$の地点まで物体が到達するには, ばねの縮み$x$の値をどのような範囲で設定すれば良いか. 
+            
+            高さ$h$における運動エネルギーが0 [J]以上あれば良い. よって, 
+            \begin{equation}
+                \frac{1}{2}kx^2 - mgh\geq 0. \ よって,\ x^2 \geq  \frac{2mgh}{k}.
+            \end{equation}
+            $x > 0$より$x \geq \sqrt{\dfrac{2mgh}{k}}$となるように縮めないといけない.
+        \end{enumerate}
+    \end{enumerate}
+\end{exbox}
+尚, 上の例題の(1)に対して, \ref{一定の力がはたらく運動} 節の\eqref{等加速度直線運動-速度} 式, \eqref{等加速度直線運動-位置} 式や, \eqref{速度と位置の関係} 式を適用できないかと考えた人もいると思います. しかしながら今回, それらの式を使用することはできません. なぜなら, \eqref{ばねの基本式} 式を見て分かるように, ばねの伸びによって弾性力の大きさが変わる, すなわち, 運動中に物体にはたらく力が一定とならないからです. 
+
+\section{浮力と水圧}
+この節では, 水圧と浮力に関して考察を深めます. 浮力に関するアルキメデスの原理というものを誓いすることが目標です. 
+\subsection{そもそも圧力とは}
+圧力という言葉は聞いたことがあると思いますが, それが何かを言語化するの案外難しいのではないでしょうか. 
+\begin{freebox}{圧力の定義}
+    物体にはたらく圧力とは, 物体のある面に着目したとき, その面の1m$^3$あたりにはたらく力の大きさのことをいう. 単位は [Pa] (パスカル)で, 式にすると次のようになる.
+    \begin{equation}
+        \textbf{圧力 [Pa]} = \frac{\textbf{その面に対して垂直にはたらく力の大きさ[N]}}{\textbf{その面の面積[m$^2$]}}. \label{圧力の定義式}
+    \end{equation}
+\end{freebox}
+圧力といいながら, 概念としては力と異なることに注意しましょう. 
+\begin{exbox}{力と圧力}
+    重さが25N, 底面積が0.0625 m$^2$ の物体が水平面に置いてあるとすると, 物体の底面の受ける圧力は, $25/0.0125 = 400$ [Pa]となります. これは, 物体の底面1m$^2$あたりに, 400Nの力を受けているということを表します. 
+\end{exbox} 
+\subsection{水圧について}
+水圧という言葉は聞いたことがあると思います. ここで, 海に潜った場合と, プール(淡水)で潜った場合を考えてみましょう. 実際に潜ってみると, 次のような事がわかると思います. 
+\begin{itemize}
+    \item 深いほど強い圧がかかる. 
+    \item 淡水よりも海水中を潜ったほうが強い圧がかかる.
+\end{itemize}
+つまり水圧には, 流体の密度と, 水深が関係していることが予想できます. 実際, 水圧を式で表すと次のような形になります. 
+\begin{freebox}{水圧(流体による圧力)}
+    流体(水)中の物体の面には, 流体(水)によりあらゆる方向から圧力が生じ, 流体が水の場合, これを特に\textbf{水圧}という. 流体(水)の密度を$\rho$ [g/m$^3$], その面の流体中の深さを$h$ [m], その面が受ける圧力の大きさは, 
+    \begin{equation}
+        \bm{\rho  hg} \label{水圧の式}
+    \end{equation}
+    で与えられる. $g$ [m/s$^2$]は重力加速度である. 
+\end{freebox}
+尚, \textbf{水や油, 空気などの流動性のある物体を流体といいます}. \eqref{水圧の式} 式より, 流体による圧力は, 流体中の深さと物体の密度の両方に比例することが分かります. 
+\begin{exbox}{水圧の例}
+    \begin{itemize}
+        \item 例えば水深10mでの水圧が500Paなら, 水深30mでは3倍の1500Paになります. 
+        \item 水の入ったペットボトルに穴を開けると, ペットボトルの下にある穴ほど, 飛び出す水の勢いが強いです.
+    \end{itemize}
+\end{exbox}
+それでは\eqref{水圧の式} 式を導出してみましょう. 流体の深さ$h$ [m]の地点にある物体の面(面積$S$ [m$^2$])を考えてみます. その面の上には流体が乗っており, その質量は, 流体の密度が$\rho$より, $\rho Sh$[kg] となります. よってその面が流体により受ける力の大きさは, 流体にはたらく重力の大きさを考え, $\rho Shg$ [N]です. 以上から, 流体により面が受ける圧力は, \eqref{圧力の定義式} 式より, 
+\begin{equation}
+    \frac{\rho Shg}{S} = \rho hg
+\end{equation}
+となります. 
+\subsection{浮力について}
+次に, 流体中にある物体が受ける浮力を説明します. そもそも浮力はなぜ生じるのでしょうか. 鍵となるのは水圧です. 水圧は水深に比例するのでした. よって物体を流体中に沈めたとき, 物体の上面, 下面それぞれが流体から受ける力を考えると,\textbf{物体の下面, つまり水深が深い方が, 上面よりも大きい力を受け, それらの力の差として浮力が生じます}. 
+
+上面, 底面の水深がそれぞれ$h_{T}$, $h_{B}$ [m]である直方体の物体にはたらく浮力を考えます. 物体の上面, 下面の面積を$S$ [m$^2$]とし, 流体の密度を$\rho$ [kg/m$^3$] とします. \eqref{水圧の式} 式を思い出しておきましょう.
+\begin{center}
+\begin{tabular}{cccc}
+    \hline
+    面 & 面積  [m$^2$]& 流体による圧力 [Pa] & 面が受ける力 [N]\\ \hline
+    物体の上面 & $S$ & $\rho h_{T}g$ & $\rho h_{T}gS$ \\ \hline
+    物体の下面 & $S$ & $\rho h_{B}g$ & $\rho h_{B}gS$\\
+    \hline
+\end{tabular}
+\end{center}
+物体の下面の受ける力のほうが大きいことに注意して, これらの差は
+\begin{equation}
+    \rho h_{B}gS- \rho h_{T}gS = \rho (h_{B}S - h_{T}S)g = \rho (h_{B} - h_{T})Sg = \rho V g
+\end{equation}
+となります\footnote{$(h_{B} - h_{T})S$が直方体の体積を表していることに注意しましょう.}. 
+\begin{freebox}{流体中の物体が受ける浮力}
+    物体が密度$\rho$ [kg/m$^3$] の流体に浸かっており, 流体中に入っている部分の体積が$V$ [m$^3$] であるとする. このとき, その物体が流体から受ける浮力 [N] は, 
+    \begin{equation}
+        \bm{\rho V g}
+    \end{equation}
+    で与えられる. $g$ [m/s$^2$] は重力加速度である.
+\end{freebox}
+ここで, $\rho Vg$という式をよく見ると, これは体積$V$ [m$^3$] , 密度$\rho$ [kg/m$^3$] の流体の重さを表していることが分かります. よって, 次のようなことがいえます.
+\begin{freebox}{浮力に関するアルキメデスの原理}
+\textbf{物体が受ける浮力は, その物体が押しのけた体積の流体が受ける重力に等しい.}
+\end{freebox}
+これだけでは分かりにくいかと思うため, 例を挙げてみます.
+\begin{exbox}{アルキメデスの原理}
+\begin{itemize}
+\item 重力加速度を10m/s$^2$とする. 密度が2g/cm$^3$の流体に, 体積200cm$^3$の物体を全て沈める. 
+\begin{center}
+\begin{tabular}{cc}
+\begin{minipage}{5cm}
+\centering
+\begin{tikzpicture}[scale=0.45]
+%水枠
+\fill[lightgray](5,0,5)to(5,0,0)to(5,4,0)to(5,4,5)--cycle; %枠右
+\fill[lightgray](0,0,5)to(0,0,0)to(0,4,0)to(0,4,5)--cycle; %枠左
+\fill[lightgray](0,4,5)to(5,4,5)to(5,4,0)to(0,4,0)--cycle; %枠上
+\fill[lightgray](0,0,5)to(5,0,5)to(5,4,5)to(0,4,5)--cycle; %枠手前
+
+%水枠
+\draw[gray](5,0,5)to(5,0,0)to(5,4,0)to(5,4,5)--cycle; %枠右
+\draw[gray](0,0,5)to(0,0,0)to(0,4,0)to(0,4,5)--cycle; %枠左
+\draw[gray](0,4,5)to(5,4,5)to(5,4,0)to(0,4,0)--cycle; %枠上
+\draw[gray](0,0,5)to(5,0,5)to(5,4,5)to(0,4,5)--cycle; %枠手前
+
+
+%大枠
+\draw(5,0,5)to(5,0,0)to(5,5,0)to(5,5,5)--cycle; %枠右
+\draw(0,0,5)to(0,0,0)to(0,5,0)to(0,5,5)--cycle; %枠左
+\draw(0,5,5)to(5,5,5)to(5,5,0)to(0,5,0)--cycle; %枠上
+\draw(0,0,5)to(5,0,5)to(5,5,5)to(0,5,5)--cycle; %枠手前
+\draw(0,0,5)to(5,0,5)to(5,0,0)to(0,0,0)--cycle; %枠下
+
+\draw(2,4,0)node[right]{流体};
+
+%小枠塗り
+\fill[gray](3,0,3)to(3,0,1)to(3,2,1)to(3,2,3)--cycle; %枠右
+\fill[gray](1,0,3)to(1,0,1)to(1,2,1)to(1,2,3)--cycle; %枠左
+\fill[gray](1,2,3)to(3,2,3)to(3,2,1)to(1,2,1)--cycle; %枠上
+\fill[gray](1,0,3)to(3,0,3)to(3,2,3)to(1,2,3)--cycle; %枠手前
+\fill[gray](1,0,3)to(3,0,3)to(3,0,1)to(1,0,1)--cycle; %枠下
+
+%小枠
+\draw(3,0,3)to(3,0,1)to(3,2,1)to(3,2,3)--cycle; %枠右
+\draw(1,0,3)to(1,0,1)to(1,2,1)to(1,2,3)--cycle; %枠左
+\draw(1,2,3)to(3,2,3)to(3,2,1)to(1,2,1)--cycle; %枠上
+\draw(1,0,3)to(3,0,3)to(3,2,3)to(1,2,3)--cycle; %枠手前
+\draw(1,0,3)to(3,0,3)to(3,0,1)to(1,0,1)--cycle; %枠下
+\end{tikzpicture}
+\end{minipage}
+&
+\begin{minipage}{5cm}
+この体積の流体を押しのけている.\\\\
+\centering
+\begin{tikzpicture}[scale=0.6]
+%物体小枠塗り
+\fill[gray](2,0,2)to(2,0,0)to(2,2,0)to(2,2,2)--cycle; %枠右
+\fill[gray](0,0,2)to(0,0,0)to(0,2,0)to(0,2,2)--cycle; %枠左
+\fill[gray](0,2,2)to(2,2,2)to(2,2,0)to(0,2,0)--cycle; %枠上
+\fill[gray](0,0,2)to(2,0,2)to(2,2,2)to(0,2,2)--cycle; %枠手前
+
+%物体小枠
+\draw(2,0,2)to(2,0,0)to(2,2,0)to(2,2,2)--cycle; %枠右
+\draw(0,0,2)to(0,0,0)to(0,2,0)to(0,2,2)--cycle; %枠左
+\draw(0,2,2)to(2,2,2)to(2,2,0)to(0,2,0)--cycle; %枠上
+\draw(0,0,2)to(2,0,2)to(2,2,2)to(0,2,2)--cycle; %枠手前
+\draw(0,0,2)to(2,0,2)to(2,0,0)to(0,0,0)--cycle; %枠下
+
+\draw(3,1,0)node[right]{$\longrightarrow$};
+
+%小枠塗り
+\fill[lightgray](8,0,2)to(8,0,0)to(8,2,0)to(8,2,2)--cycle; %枠右
+\fill[lightgray](6,0,2)to(6,0,0)to(6,2,0)to(6,2,2)--cycle; %枠左
+\fill[lightgray](6,2,2)to(8,2,2)to(8,2,0)to(6,2,0)--cycle; %枠上
+\fill[lightgray](6,0,2)to(8,0,2)to(8,2,2)to(6,2,2)--cycle; %枠手前
+\fill[lightgray](6,0,2)to(8,0,2)to(8,0,0)to(6,0,0)--cycle; %枠下
+
+%小枠
+\draw(8,0,2)to(8,0,0)to(8,2,0)to(8,2,2)--cycle; %枠右
+\draw(6,0,2)to(6,0,0)to(6,2,0)to(6,2,2)--cycle; %枠左
+\draw(6,2,2)to(8,2,2)to(8,2,0)to(6,2,0)--cycle; %枠上
+\draw(6,0,2)to(8,0,2)to(8,2,2)to(6,2,2)--cycle; %枠手前
+\draw(6,0,2)to(8,0,2)to(8,0,0)to(6,0,0)--cycle; %枠下
+\end{tikzpicture}
+\\
+\centering
+物体(200cm$^3$) \quad 流体(200cm$^3$)
+\end{minipage}
+\end{tabular}
+\end{center}
+ 
+物体が受ける浮力は, 押しのけた流体の質量が$2\text{[g/cm$^3$]} \cdot 200\text{[cm$^3$]}=400$ [g] のため, 4Nとなる.
+\item タンカー(貨物船)は, 鉄でできているにもかかわらず, 海に浮かび, 重い荷物を多く運ぶことができる. \url{https://illustimage.com/?dl=1012}
+\vspace{-1cm}
+\begin{center}
+\includegraphics[scale = 0.15]{fig/1012.png}
+\end{center}
+\vspace{-1cm}
+これは, 船底の, 海水を押しのける部分の体積を大きくすることで大きな浮力を受けられるようにし, 更に内部に多くの空間を作ることで, 船体の密度を小さくしているためである. 
+\end{itemize}
+\end{exbox}
+
+\begin{exbox}{浮力に関するその他の例}
+    \begin{itemize}
+    \item 「物体の密度が流体の密度よりも大きければ物体は沈み, 小さければ浮く」という事実は有名ですが, これを理論的にも導いてみましょう. 物体の密度, 体積それぞれを$\rho_{1}$ [kg/m$^3$] , $V$ [m$^3$]とし, 流体の密度を$\rho_{2}$とします.
+        
+    物体を, 流体中に物体全体が入るように手で支えて(押さえて)おき, 静かに手を離します. このとき, 物体にはたらく重力は$\rho_{1} Vg$ [N], 
+    物体にはたらく浮力は$\rho_{2}Vg $ [N] となります. 例えば物体が浮くときは, 物体にはたらく浮力が重力よりも大きくなるため, 
+    \begin{equation}
+        \rho_{2} Vg > \rho {1}Vg,\ すなわち\ \rho_{2} > \rho_{1}.
+    \end{equation}
+    同様に, 物体が沈むときは, $\rho_{2} < \rho_{1}$となり, 確かに正しいことが確認できます.
+    \item 密度$\rho_{1}$ [kg/m$^3$] で, 体積$V$ [m$^3$]の物体の$a$ [％] ($0 < a < 100$)が, 密度$\rho_{2}$ [kg/m$^3$]の流体中に浸かって静止しているとします. このとき, $a$は密度$\rho_{1}$, $\rho_{2}$を用いてどのように表せるでしょうか.
+    
+    流体中にある物体の体積は$aV$であり, その部分が受ける浮力は$\rho_{2}aVg$です. また, 物体にはたらく重力の大きさは, $\rho_{1}Vg$と表せます. 浮力と重力のつり合いから, 
+    \begin{equation}
+        \rho_{2}aVg = \rho_{1}Vg.\ よって\ a = \frac{\rho_{1}}{\rho_{2}}.
+    \end{equation}
+    例えば水に浮いて静止している氷を考えると, 水の密度1000kg/m$^3$, 氷の密度917kg/m$^3$より, $\rho_{1} = 917$, $\rho_{2} = 1000$として, 氷のうち91.7％が水中に浸かっていることが分かるわけです. 
+\end{itemize}
+\end{exbox}
 \section{運動量とその保存}
 こちらは完全に高校物理の内容となりますが, 運動量というものにも保存則が成り立つため紹介しようと思います. 保存則の導出の際には作用, 反作用の法則が重要になります. 
 \begin{freebox}{運動量}
@@ -1466,7 +1822,7 @@ $\mu \times 垂直抗力の大きさ$」で表されることを学びます. �
 \begin{freebox}{運動量保存則}
     質量$m_{1}$ [kg]で速度$v_{1}$ [m/s$^2$]の物体1が, 質量$m_{2}$ [kg] で速度$v_{2}$で運動する物体2と衝突したのち, それぞれの速度が$v_{1}'$ [m/s], $v_{2}'$ [m/s]になったとする. このとき, 運動量について以下が成り立つ.
     \begin{equation}
-        \bm{m_{1}v_{1}} + \bm{m_{2}v_{2}} = \bm{m_{1}v_{1}'} + \bm{m_{2}v_{2}'} \label{運動量保存則}
+        \bm{m_{1}v_{1}} + \bm{m_{2}v_{2}} = \bm{m_{1}v_{1}'} + \bm{m_{2}v_{2}'}. \label{運動量保存則}
     \end{equation}
     \begin{center}
     \begin{tabular}{ccc}
@@ -1528,14 +1884,14 @@ $\mu \times 垂直抗力の大きさ$」で表されることを学びます. �
 となります. 変形して
 \begin{equation}
 F(t_{1} - t_{0}) = mv_{1} - mv_{0}
-\end{equation}となり, \textbf{左辺は運動量の変化を表していることが分かります}. 
+\end{equation}となるため, \textbf{左辺は運動量の変化を表していることが分かります}. 
  
 \begin{freebox}{力積}
 時刻$t_{0}$ [s]から時刻$t_{1}$ [s]の, $\Delta t = t_{1}-t_{0}$ 秒間に, 物体に一定の力$F$ [N] がはたらいたとする. このとき, 
 \begin{equation}
-    \bm{F\Delta t}
+    \bm{F\Delta t} \label{力積の式}
 \end{equation}
-を力積という. また, 上での考察のように, 
+を\textbf{力積}という. また, 上での考察のように, 
 \begin{equation}
     \bm{F\Delta t} = \bm{mv_{1}} - \bm{mv_{0}}
 \end{equation}
@@ -1567,8 +1923,8 @@ F(t_{1} - t_{0}) = mv_{1} - mv_{0}
 よって, 物体それぞれの力積は, 物体1の受ける力の向きを正として, 
 \begin{equation}
 \begin{cases}
-    \text{物体1} & F\Delta t = m_{1}v_{1}' - m_{1}v_{1}\\
-    \text{物体2} & -F\Delta t = m_{2}v_{2}' - m_{2}v_{2}\\
+    \text{物体1} & F\Delta t = m_{1}v_{1}' - m_{1}v_{1},\\
+    \text{物体2} & -F\Delta t = m_{2}v_{2}' - m_{2}v_{2}.
 \end{cases}
 \end{equation}
 両辺を加えることで, 力積がキャンセルされ, 
