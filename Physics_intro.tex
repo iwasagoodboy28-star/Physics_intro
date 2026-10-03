@@ -9,7 +9,7 @@
 \numberwithin{equation}{section} %式番号にsection番号をつける
 \mathtoolsset{showonlyrefs=true}
 \usepackage{tikz,tikzpeople}
-\usetikzlibrary{intersections,calc,arrows.meta,patterns,cd, angles, decorations.markings,decorations.pathmorphing}
+\usetikzlibrary{intersections,calc,arrows.meta,patterns,cd, angles, decorations.markings,decorations.pathmorphing,backgrounds}
 \tcbuselibrary{breakable,theorems,skins}% tcolorboxのオプション
 % 色の定義
 \definecolor{nomesihana}{cmyk}{.8,.6,.46,.03}
@@ -1649,7 +1649,7 @@ $x$ [m]だけ伸びた(縮んだ)ばねは, 物体にどれだけの仕事を行
 \end{itemize}
 つまり水圧には, 流体の密度と, 水深が関係していることが予想できます. 実際, 水圧を式で表すと次のような形になります. 尚, 大気圧は考えず, 流体からの圧力のみに着目しています.
 \begin{freebox}{水圧(流体による圧力)}
-    流体(水)中の物体の面には, 流体(水)によりあらゆる方向から圧力が生じ, 流体が水の場合, これを特に\textbf{水圧}という. 流体(水)の密度を$\rho$ [kg/m$^3$], その面の流体中の深さを$h$ [m], その面が受ける圧力の大きさは, 
+    流体(水)中の物体の面には, 流体(水)によりあらゆる方向から圧力が生じ, 流体が水の場合, これを特に\textbf{水圧}という. 流体(水)の密度を$\rho$ [kg/m$^3$], その面の流体中の深さを$h$ [m], その面が受ける圧力の大きさ [Pa] は, 
     \begin{equation}
         \bm{\rho  hg} \label{水圧の式}
     \end{equation}
@@ -1662,15 +1662,114 @@ $x$ [m]だけ伸びた(縮んだ)ばねは, 物体にどれだけの仕事を行
         \item 水の入ったペットボトルに穴を開けると, ペットボトルの下にある穴ほど, 飛び出す水の勢いが強いです.
     \end{itemize}
 \end{exbox}
-それでは\eqref{水圧の式} 式を導出してみましょう. 流体の深さ$h$ [m]の地点にある物体の面(面積$S$ [m$^2$])を考えてみます. その面の上には流体が乗っており, その質量は, 流体の密度が$\rho$より, $\rho Sh$[kg] となります. よってその面が流体により受ける力の大きさは, 流体にはたらく重力の大きさを考え, $\rho Shg$ [N]です. 以上から, 流体により面が受ける圧力は, \eqref{圧力の定義式} 式より, 
+それでは\eqref{水圧の式} 式を導出してみましょう. 密度$\rho$ [kg/m$^3$] の流体の深さ$h$ [m]の地点にある物体の面(面積$S$ [m$^2$])を考えてみます. 
+\begin{center}
+\begin{tabular}{cc}
+\begin{minipage}{5cm}
+\centering
+\begin{tikzpicture}[scale=0.32]
+    \coordinate(O)at(0,0);
+    \coordinate(x)at(1,0); % vector
+    \coordinate(y)at(0,1); % vector
+    \coordinate(v)at($(x)+(y)$); % vector
+    % 直方体OABC-DEFG
+    \coordinate(A)at($4*(x)$);
+    \coordinate(C)at($3*(v)$);
+    \coordinate(B)at($(A)+(C)$);
+    \coordinate(D)at($8*(y)$);
+    \coordinate(E)at($(A)+(D)$);
+    \coordinate(F)at($(E)+3*(v)$);
+    \coordinate(G)at($(D)+3*(v)$);
+    \coordinate(M)at($(O)!0.5!(B)$);
+
+    \path[draw, fill = gray](O)to(A)to(B)to(C)to cycle; %底面
+    \path[draw, fill = lightgray, opacity=0.5](D)to(E)to(F)to(G)to cycle; % 上面
+    \path[draw, fill = lightgray, opacity=0.5](O)to(A)to(E)to(D)to cycle; % 手前の面
+    \path[draw, fill = lightgray, opacity=0.5](A)to(B)to(F)to(E)to cycle; % 右側面
+    \path[draw, fill = lightgray, opacity=0.5](O)to(C)to(G)to(D)to cycle; % 左側面
+    \path[draw, fill = lightgray, opacity=0.5](C)to(B)to(F)to(G)to cycle; % 奥の面
+    % force
+    \path[draw, thick, -stealth](M)to($(M)-4*(y)$)node[below]{$\rho Shg$};
+    \draw(M)node[above right]{$S$};
+    \draw(M)node{$\bullet$};
+    \path[draw](F)to [bend left=25] node[midway, fill = white]{$h$} (B);
+\end{tikzpicture}
+\end{minipage}&
+\begin{minipage}{8cm}
+その面の上には流体が乗っており, その質量は, 流体の密度が$\rho$より, $\rho Sh$[kg] となります. よってその面が流体により受ける力の大きさは, 流体にはたらく重力の大きさを考え, $\rho Shg$ [N]です. 以上から, 流体により面が受ける圧力は, \eqref{圧力の定義式} 式より, 
 \begin{equation}
     \frac{\rho Shg}{S} = \rho hg
 \end{equation}
 となります. 
+\end{minipage}
+\end{tabular}
+\end{center}
 \subsection{浮力について}
 次に, 流体中にある物体が受ける浮力を説明します. そもそも浮力はなぜ生じるのでしょうか. 鍵となるのは水圧です. 水圧は水深に比例するのでした. よって物体を流体中に沈めたとき, 物体の上面, 下面それぞれが流体から受ける力を考えると,\textbf{物体の下面, つまり水深が深い方が, 上面よりも大きい力を受け, それらの力の差として浮力が生じます}. 
+\begin{center}
+\begin{tabular}{cc}
+\begin{minipage}{7cm}
+\centering
+\begin{tikzpicture}[scale=0.35]
+    \coordinate(O)at(0,0);
+    \coordinate(x)at(1,0); % vector
+    \coordinate(y)at(0,1); % vector
+    \coordinate(v)at($(x)+(y)$); % vector
+    % 直方体OABC-DEFG
+    \coordinate(A)at($4*(x)$);
+    \coordinate(C)at($3*(v)$);
+    \coordinate(B)at($(A)+(C)$);
+    \coordinate(D)at($8*(y)$);
+    \coordinate(E)at($(A)+(D)$);
+    \coordinate(F)at($(E)+3*(v)$);
+    \coordinate(G)at($(D)+3*(v)$);
+    \coordinate(MB)at($(O)!0.5!(B)$);
+    \coordinate(MT)at($(D)!0.5!(F)$);
 
-上面, 底面の水深がそれぞれ$h_{T}$, $h_{B}$ [m]である直方体の物体にはたらく浮力を考えます. 物体の上面, 下面の面積を$S$ [m$^2$]とし, 流体の密度を$\rho$ [kg/m$^3$] とします. \eqref{水圧の式} 式を思い出しておきましょう.
+    % 深さh_Tの面
+    \coordinate(D')at($(D)-4*(x)$);
+    \coordinate(E')at($(E)+4*(x)$);
+    \coordinate(F')at($(F)+4*(x)$);
+    \coordinate(G')at($(G)-4*(x)$);
+    \coordinate[label = above right:$h_{T}$](hT)at($(E')!0.5!(F')$);
+    \path[draw, fill = lightgray, opacity=0.5](D')to(E')to(F')to(G')to cycle;
+
+    % 深さh_Bの面
+    \coordinate(O')at($(O)-4*(x)$);
+    \coordinate(A')at($(A)+4*(x)$);
+    \coordinate(B')at($(B)+4*(x)$);
+    \coordinate(C')at($(C)-4*(x)$);
+    \coordinate[label = right:$h_{B}$](hB)at($(A')!0.5!(B')$);
+    \path[draw, fill = lightgray, opacity=0.5](O')to(A')to(B')to(C')to cycle;
+
+    % 高さh
+    \path[draw, dashed](hB)to node[midway, fill = white]{$h$} (hT);
+
+    % 物体
+    \path[draw, fill = gray](O)to(A)to(B)to(C)to cycle; %底面
+    \path[draw, fill = gray, opacity=0.5](D)to(E)to(F)to(G)to cycle; % 上面
+    \path[draw, fill = gray, opacity=0.5](O)to(A)to(E)to(D)to cycle; % 手前の面
+    \path[draw, fill = gray, opacity=0.5](A)to(B)to(F)to(E)to cycle; % 右側面
+    \path[draw, fill = gray, opacity=0.5](O)to(C)to(G)to(D)to cycle; % 左側面
+    \path[draw, fill = gray, opacity=0.5](C)to(B)to(F)to(G)to cycle; % 奥の面
+
+    % force bottom
+    \path[draw, thick, -stealth](MB)to($(MB)+4*(y)$)node[below right]{$\rho Sh_{B}g$};
+    \draw(MB)node[above right]{$S$};
+    \draw(MB)node{$\bullet$};
+
+    % force top
+    \path[draw, thick, -stealth](MT)to($(MT)-2*(y)$)node[below]{$\rho Sh_{T}g$};
+    \draw(MT)node[above right]{$S$};
+    \draw(MT)node{$\bullet$};
+\end{tikzpicture}
+\end{minipage}&
+\begin{minipage}{7cm}
+上面, 底面の水深がそれぞれ$h_{T}$, $h_{B}$ [m]である, 高さ$h$の直方体の物体にはたらく浮力を考えます. 物体の上面, 下面の面積を$S$ [m$^2$]とし, 流体の密度を$\rho$ [kg/m$^3$] とします. \eqref{水圧の式} 式を思い出しておきましょう.
+\end{minipage}
+\end{tabular}
+\end{center}
+\medskip
 \begin{center}
 \begin{tabular}{cccc}
     \hline
@@ -1682,9 +1781,9 @@ $x$ [m]だけ伸びた(縮んだ)ばねは, 物体にどれだけの仕事を行
 \end{center}
 物体の下面の受ける力のほうが大きいことに注意して, これらの差は
 \begin{equation}
-    \rho h_{B}gS- \rho h_{T}gS = \rho (h_{B}S - h_{T}S)g = \rho (h_{B} - h_{T})Sg = \rho V g
+    \rho h_{B}gS- \rho h_{T}gS = \rho (h_{B}S - h_{T}S)g = \rho (h_{B} - h_{T})Sg = \rho hSg = \rho V g
 \end{equation}
-となります\footnote{$(h_{B} - h_{T})S$が直方体の体積を表していることに注意しましょう. また, 直方体でない形状の場合にも, 発展的な積分をすることで同様の結論を得られます. }. 
+となります\footnote{$hS$が直方体の体積を表していることに注意しましょう. また, 直方体でない形状の場合にも, 発展的な積分をすることで同様の結論を得られます. }. 
 \begin{freebox}{流体中の物体が受ける浮力}
     物体が密度$\rho$ [kg/m$^3$] の流体に浸かっており, 流体中に入っている部分の体積が$V$ [m$^3$] であるとする. このとき, その物体が流体から受ける浮力 [N] は, 
     \begin{equation}
@@ -1694,17 +1793,17 @@ $x$ [m]だけ伸びた(縮んだ)ばねは, 物体にどれだけの仕事を行
 \end{freebox}
 ここで, $\rho Vg$という式をよく見ると, これは体積$V$ [m$^3$] , 密度$\rho$ [kg/m$^3$] の流体の重さを表していることが分かります. よって, 次のようなことがいえます.
 \begin{freebox}{浮力に関するアルキメデスの原理}
-\textbf{物体が受ける浮力は, その物体が押しのけた体積の流体が受ける重力に等しい.}
+\textbf{物体が受ける浮力の大きさは, その物体が押しのけた体積の流体が受ける重力の大きさに等しい.}
 \end{freebox}
 これだけでは分かりにくいかと思うため, 例を挙げてみます.
 \begin{exbox}{アルキメデスの原理}
 \begin{itemize}
-\item 重力加速度を10m/s$^2$とする. 密度が2g/cm$^3$の流体に, 体積200cm$^3$の物体を全て沈める. 
+\item 重力加速度を10m/s$^2$とします. 密度が2g/cm$^3$の流体に, 体積200cm$^3$の物体を全て沈めた場合を考えます. 
 \begin{center}
 \begin{tabular}{cc}
 \begin{minipage}{5cm}
 \centering
-\begin{tikzpicture}[scale=0.45]
+\begin{tikzpicture}[scale=0.43]
 %水枠
 \fill[lightgray](5,0,5)to(5,0,0)to(5,4,0)to(5,4,5)--cycle; %枠右
 \fill[lightgray](0,0,5)to(0,0,0)to(0,4,0)to(0,4,5)--cycle; %枠左
@@ -1783,20 +1882,19 @@ $x$ [m]だけ伸びた(縮んだ)ばねは, 物体にどれだけの仕事を行
 \end{tabular}
 \end{center}
  
-物体が受ける浮力は, 押しのけた流体の質量が$2\text{[g/cm$^3$]} \cdot 200\text{[cm$^3$]}=400$ [g] のため, 4Nとなる.
-\item タンカー(貨物船)は, 鉄でできているにもかかわらず, 海に浮かび, 重い荷物を多く運ぶことができる. \url{https://illustimage.com/?dl=1012}
-\vspace{-1cm}
+物体が受ける浮力は, 押しのけた流体の質量が$2\text{[g/cm$^3$]} \cdot 200\text{[cm$^3$]}=400$ [g] のため, 4Nとなります.
+\item タンカー(貨物船)は, 鉄でできているにも関わらず, 海に浮かび, 重い荷物を多く運ぶことができます. \url{https://illustimage.com/?dl=1012}
 \begin{center}
-\includegraphics[scale = 0.15]{fig/1012.png}
+\includegraphics[scale = 0.1]{fig/1012.png}
 \end{center}
 \vspace{-1cm}
-これは, 船底の, 海水を押しのける部分の体積を大きくすることで大きな浮力を受けられるようにし, 更に内部に多くの空間を作ることで, 船体の密度を小さくしているためである. 
+これは, 船底の海水を押しのける部分の体積を大きくすることで, 大きな浮力を受けられるようにし, 更に内部に多くの空間を作ることで, 船体の密度を小さくしているためです. 
 \end{itemize}
 \end{exbox}
 
 \begin{exbox}{浮力に関するその他の例}
     \begin{itemize}
-    \item 「物体の密度が流体の密度よりも大きければ物体は沈んでいき, 小さければ浮き上がってくる」という事実は有名ですが, これを理論的にも導いてみましょう. 物体の密度, 体積それぞれを$\rho_{1}$ [kg/m$^3$] , $V$ [m$^3$]とし, 流体の密度を$\rho_{2}$とします.
+    \item 「物体の密度が流体の密度よりも大きければ物体は沈んでいき, 小さければ浮き上がってくる」という事実は有名ですが, これを理論的にも導いてみましょう. 物体の密度, 体積それぞれを$\rho_{1}$ [kg/m$^3$] , $V$ [m$^3$] とし, 流体の密度を$\rho_{2}$ [kg/m$^3$] とします.
         
     物体を, 流体中に物体全体が入るように手で支えて(押さえて)おき, 静かに手を離します. このとき, 物体にはたらく重力は$\rho_{1} Vg$ [N], 
     物体にはたらく浮力は$\rho_{2}Vg $ [N] となります. 例えば物体が浮き上がっていくときは, 物体にはたらく浮力が重力よりも大きくなるため, 
