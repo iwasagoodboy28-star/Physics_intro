@@ -71,7 +71,7 @@ title={#2},
 \tableofcontents
 
 \section{はじめに}
-主に物理に初めて触れる人のために, 力, 仕事とエネルギーの関係について解説しました. また, 微積分学との関連に関しても, 有害でない程度に説明を加えました. 物理学は数学とのつながりが分かりやすい学問でもあると思いますが, それを体感する機会になれば良いと思います. 力の図示が必要な場面では, 見やすさのために作用点をずらしている場合があります. また, 分かり易さのため, 多少不正確な説明となる場面がありますが, ご了承ください. まず, 今後多く使う記法について軽く紹介しておきます. 
+主に物理に初めて触れる人のために, 中学, 高校の力学における基本的な概念を解説しました. また, 微積分学との関連に関しても, 有害でない程度に説明を加えました. 物理学は数学とのつながりが分かりやすい学問でもあると思いますが, それを体感する機会になれば良いと思います. 力の図示が必要な場面では, 見やすさのために作用点をずらしている場合があります. また, 分かり易さのため, 多少不正確な説明となる場面がありますが, ご了承ください. まず, 今後多く使う記法について紹介しておきます. 
 \begin{freebox}{掛け算の記号}
 この文書では, 掛け算の記号として$\cdot$を使用する. 例えば$2 \times 3 = 6$と書いていたものは, $2 \cdot 3 = 6$となる. 
 \end{freebox}
@@ -81,17 +81,176 @@ title={#2},
 関数は英語でfunction といい, その頭文字の$f$が使われることが多いです(別に$f$でなくても良い). とりあえず, 関数の例を色々と挙げてみます.
 \begin{exbox}{関数の例}
     \begin{itemize}
-    \item 配送会社では, 荷物の質量によって配送料金が決まります. 荷物の質量が1つに決まれば, 配送料金が1つに決まるため, 配送料金は荷物の質量の関数です.
-    \item 人間のフルネーム1つに対して, その名字は１つに定まります. よって, 名字はフルネームの関数であるといえます. 逆に, 名字を決めてもフルネームは１つに決まらないため, フルネームは名字の関数ではありません. 
-    \item 1つのクラス内においては, 出席番号を1つ指定すれば, 対応して生徒が1人定まります. よって, (1つのクラス内において)生徒は, 出席番号の関数です. 逆に, 生徒を1人指名すれば, その人の出席番号が対応して1つに決まります. よって, 出席番号は生徒の関数でもあります.
+    \item 配送会社では, 荷物の質量が決まれば, それに応じて配送料金が1通りに決まります. よって配送料金は荷物の質量の関数です.
+    \item 人間のフルネーム1つに対して, その名字は１つに定まります. よって, 名字はフルネームの関数です. 逆に, 名字を決めてもフルネームは１つに決まらないため, フルネームは名字の関数ではありません. 
     \item 数$x$を1つ指定すると, その絶対値は1つに決まります. よって, 絶対値は元の数$x$の関数です. では逆に, 正の数$x$を1つ指定して, $x$を絶対値に持つ数を対応させる規則を考えると, これは$x$の関数となるでしょうか. ついでに考えてみてください.
 \end{itemize}
 \end{exbox}
 \begin{exbox}{この文書で使われる例}
     運動している物体は, 時刻によって, 速度や位置が決まります. そのため, 物体の速度は時刻の関数で, 物体の位置も時刻の関数です. この文書では, それを明確にするために, 時刻を$t$として, 速度は$v(t)$, 位置は$x(t)$と書くことがあります.
 \end{exbox}
-\section{必要な用語, 概念}
-物理学, 特に力学とは, 物体の運動と力の関係についてを考察する学問です. そこでは物体の動きを表現する指標として, 速度や, 加速度という物理量が用いられます. 
+\section{基本的な用語, 概念}
+\subsection{ベクトル}
+物理学, 特に力学とは, 物体の運動と力の関係についてを考察する学問です. そこでは物体の動きを表現する指標として, 速度や, 加速度という物理量が用いられます. これらはベクトルというものに分類され, 図によって加減算を行うことができます. 
+\begin{freebox}{ベクトル}
+\textbf{物理におけるベクトルとは,「大きさ」と「向き」の両方を持つ量のことをいう}. 図示する際は, 矢印を用いて向きを表し, その長さで大きさを表す. 表記は$\overset{\rightarrow}{a}$や, $\bm{a}$が用いられる.
+\end{freebox}
+例えば, のちに登場する速度, 加速度, 力, 運動量はベクトルに分類できます. ベクトルの便利な点\footnote{人によっては混乱する点かもしれない.}は, 図によって加減算を行うことができるという点です. 
+\begin{freebox}{ベクトルの計算その1}
+\begin{itemize}
+    \item \textbf{ベクトルの加算}：ベクトル$\overset{\rightarrow}{a}$, $\overset{\rightarrow}{b}$に対して, $\overset{\rightarrow}{a} + \overset{\rightarrow}{b}$は, 
+    \begin{center}
+    \begin{tabular}{cc}
+    \begin{minipage}{6cm}
+    \begin{tikzpicture}[scale = 0.4]
+    \coordinate(O)at(0,0);
+    \coordinate[label=$\overset{\rightarrow}{a}$](a)at(4, 2);
+    \coordinate[label=right:$\overset{\rightarrow}{b}$](b)at(6, -1);
+    \coordinate[label = right:{$\overset{\rightarrow}{a} + \overset{\rightarrow}{b}$}](aplusb)at($(a) + (b)$);
+    \path[draw, -stealth](O)to(a);
+    \path[draw, -stealth](O)to(b);
+    \path[draw, thick, -stealth](O)to(aplusb);
+    \path[draw, dashed](a)to(aplusb)to(b);
+    \end{tikzpicture}
+    \end{minipage}&
+    \begin{minipage}{5cm}
+    $\overset{\rightarrow}{a}$と$\overset{\rightarrow}{b}$を対辺とする平行四辺形を書くと, その対角線に$\overset{\rightarrow}{a} + \overset{\rightarrow}{b}$が現れる. 
+    \end{minipage}
+    \end{tabular}
+    \end{center}
+    \item \textbf{ベクトルの拡大, 縮小}：ベクトル$\overset{\rightarrow}{a}$に対して, $c\overset{\rightarrow}{a}$は, 長さが$c$の絶対値倍になる. 向きは, $c$が正の場合は変わらず, $c$がの場合, 逆向きになる.
+    \begin{center}
+    \begin{tabular}{cc}
+    $c > 0$の場合 & $c < 0$の場合\\
+    \begin{minipage}{5cm}
+    \begin{tikzpicture}[scale = 0.4]
+    \coordinate(O)at(0,0);
+    \draw(O)node{$\bullet$};
+    \coordinate[label=above: $\overset{\rightarrow}{a}$](a)at(4, 2);
+    \coordinate[label=right:$c\overset{\rightarrow}{a}$](b)at($2.2*(a)$);
+    \path[draw, -stealth](O)to(a);
+    \path[draw, thick, -stealth](O)to(b);
+    \end{tikzpicture}
+    \end{minipage}&
+    \begin{minipage}{5cm}
+    \begin{tikzpicture}[scale = 0.4]
+    \coordinate(O)at(0,0);
+    \draw(O)node{$\bullet$};
+    \coordinate[label=$\overset{\rightarrow}{a}$](a)at(4, 2);
+    \coordinate[label=left:$c\overset{\rightarrow}{a}$](b)at($-1.1*(a)$);
+    \path[draw, -stealth](O)to(a);
+    \path[draw, , thick, -stealth](O)to(b);
+    \end{tikzpicture}
+    \end{minipage}
+    \end{tabular}
+    \end{center}
+    \item \textbf{ベクトルの減算}：ベクトル$\overset{\rightarrow}{a}$, $\overset{\rightarrow}{b}$に対して, $\overset{\rightarrow}{a} - \overset{\rightarrow}{b}$は, $\overset{\rightarrow}{a} + (-\overset{\rightarrow}{b})$とみて加算を行えばよい.
+    \vspace{-4mm}
+    \begin{center}
+    \begin{tikzpicture}[scale = 0.35]
+    \coordinate(O)at(0,0);
+    \coordinate[label=$\overset{\rightarrow}{a}$](a)at(4, 2);
+    \coordinate[label=right:$\overset{\rightarrow}{b}$](b)at(7, -2);
+    \coordinate[label=left:$-\overset{\rightarrow}{b}$](mb)at(-7,2);
+    \coordinate[label = {$\overset{\rightarrow}{a} -\overset{\rightarrow}{b}$}](aminusb)at($(a) - (b)$);
+    \path[draw, -stealth](O)to(a);
+    \path[draw, -stealth](O)to(b);
+    \path[draw, -stealth, orange](O)to(mb);
+    \path[draw, thick, -stealth](O)to(aminusb);
+    \path[draw, dashed](mb)to(aminusb)to(a);
+    \end{tikzpicture}
+    \end{center}
+\end{itemize}
+\end{freebox}
+そもそも, ベクトルの加算に平行四辺形が現れ, 和が対角線になるのはなぜなのでしょうか. 例えば, ベクトルを進む方向で表すと, $\overset{\rightarrow}{a}$：右に3, 上に1, $\overset{\rightarrow}{b}$：右に2, 上に4と表せます. 
+\begin{center}
+    \begin{tabular}{cc}
+    \begin{minipage}{6cm}
+    \begin{tikzpicture}[scale = 0.6]
+        \foreach \i in {0,...,6}
+        {
+        \draw[gray](\i,0)to(\i,6);
+        }
+        \foreach \i in {0,...,6}
+        {
+        \draw[gray](0,\i)to(6,\i);
+        }
+        \draw(0,0)node[left]{\small{O}};
+        \coordinate[label = left:{\small{O}}](O)at(0,0);
+        \coordinate[label = right:$\overset{\rightarrow}{a}$](F1)at(3,1);
+        \coordinate[label = above:$\overset{\rightarrow}{b}$](F2)at(2,4);
+        % 分力
+        \draw[thick,-stealth](O)to(F1);
+        \draw[thick,-stealth](O)to(F2);
+    \end{tikzpicture}
+    
+    \end{minipage}&
+    \begin{minipage}{6cm}
+    \begin{tikzpicture}[scale = 0.6]
+        \foreach \i in {0,...,6}
+        {
+        \draw[gray](\i,0)to(\i,6);
+        }
+        \foreach \i in {0,...,6}
+        {
+        \draw[gray](0,\i)to(6,\i);
+        }
+        \coordinate[label = left:{\small{O}}](O)at(0,0);
+        \coordinate[label = right:$\overset{\rightarrow}{a}$](F1)at(3,1);
+        \coordinate[label = above:$\overset{\rightarrow}{b}$](F2)at(2,4);
+        \coordinate[label = above right:$\overset{\rightarrow}{a} + \overset{\rightarrow}{b}$](F)at($(F1)+(F2)$);
+        % 合力
+        \draw[thick,-stealth](O)node{$\bullet$}to(F);
+        % 分力
+        \draw[thick,-stealth](O)to(F1);
+        \draw[thick,-stealth](O)to(F2);
+        % 補助線
+        \path[draw, dashed](F1)to(F)to(F2);
+    \end{tikzpicture}
+    \end{minipage}
+    \end{tabular}
+\end{center}
+和はこれらを合わせたものだから, 右に$3 + 2 = 5$, 上に$1 + 4 = 5$だけ進むと考えて図を書くと, 平行四辺形の対角線に和が現れることが分かります. 
+
+ここで, 平行四辺形の性質より, $\overset{\rightarrow}{a} + \overset{\rightarrow}{b}$は, \textbf{$\overset{\rightarrow}{a}$の先端に, $\overset{\rightarrow}{b}$を平行移動してつなげたものになっています}\footnote{$\overset{\rightarrow}{b}$の先端に, $\overset{\rightarrow}{a}$を平行移動してつなげたものと捉えても同じです.}. よって, ベクトルの加(減)算は, 平行四辺形を書かなくても行うことができます.
+\begin{freebox}{ベクトルの計算その2}
+ベクトル$\overset{\rightarrow}{a}$, $\overset{\rightarrow}{b}$に対して, $\overset{\rightarrow}{a} + \overset{\rightarrow}{b}$は, $\overset{\rightarrow}{a}$の先端に, $\overset{\rightarrow}{b}$を平行移動してつなげたものになる. 尚, $\overset{\rightarrow}{b}$の先端に, $\overset{\rightarrow}{a}$を平行移動してつなげたものと考えても同じである. 
+\begin{center}
+\begin{tabular}{cc}
+\begin{minipage}{6cm}
+\begin{tikzpicture}[scale = 0.5]
+    \coordinate[label = left:{\small{O}}](O)at(0,0);
+    \coordinate[label = right:$\overset{\rightarrow}{a}$](F1)at(3,1);
+    \coordinate[label = above:$\overset{\rightarrow}{b}$](F2)at(2,4);
+    \coordinate[label = above right:$\overset{\rightarrow}{a} + \overset{\rightarrow}{b}$](F)at($(F1)+(F2)$);
+    % 合力
+    \draw[thick,-stealth](O)to(F);
+    % 分力
+    \draw[thick,-stealth](O)to(F1);
+    \draw[thick,-stealth](O)to(F2);
+    % 補助線
+    \path[draw, thick, -stealth, orange](F1)to node[midway, right]{$\overset{\rightarrow}{b}$}(F);
+\end{tikzpicture}   
+\end{minipage}&
+\begin{minipage}{6cm}
+\begin{tikzpicture}[scale = 0.5]
+    \coordinate[label = left:{\small{O}}](O)at(0,0);
+    \coordinate[label = right:$\overset{\rightarrow}{a}$](F1)at(3,1);
+    \coordinate[label = above:$\overset{\rightarrow}{b}$](F2)at(2,4);
+    \coordinate(F)at($(F1)+(F2)$);
+    % 分力
+    \draw[thick,-stealth](O)to(F1);
+    \draw[thick,-stealth](O)to(F2);
+    % 合力
+    \draw[thick,-stealth](O)to node[midway, right]{$\overset{\rightarrow}{a} + \overset{\rightarrow}{b}$}(F);
+    % 補助線
+    \path[draw, thick, -stealth, orange](F2)to node[midway, above]{$\overset{\rightarrow}{a}$}(F);
+\end{tikzpicture}
+\end{minipage}
+\end{tabular}
+\end{center}
+\end{freebox}
+今後, ベクトルの加算, 減算を行う場面が多くなります. この文書では, 基本的には平行四辺形を書くことでベクトルの加減算を行うことにします. 
 \subsection{速さと速度}
 本来, 速さと速度は区別されて用いられます. 
 \begin{freebox}{速さ(speed)と速度(Velocity)}
@@ -100,8 +259,8 @@ title={#2},
     \begin{equation}
     \textbf{物体の速さ [m/s]} = \frac{\textbf{物体の移動した距離 [m]}}{\textbf{その距離を移動するのにかかった時間[s]}}
     \end{equation}
-    で求められる(本来は向きも含んだ式である).
-    \item 物体の速度とは, 単位時間あたりに物体が移動する直線距離を, \textbf{向きも含めて表したもの}である. 
+    で求められる.
+    \item 物体の速度とは, 単位時間あたりに物体が移動する直線距離を, \textbf{向きも含めて表したもの}である. \textbf{よって, 速度はベクトルに分類される}.
 \end{enumerate}
 \end{freebox}
 次のような例を見てみましょう. 
@@ -130,11 +289,11 @@ title={#2},
 \subsection{相対速度}
 自分が自動車に乗っていて, 反対方向に走る自動車を見ると, とても早く通り過ぎると思います. また, 自分の乗っている列車と, 隣の線路で同じ方向に走る列車において, 自分の乗っている列車の方が早い場合は, 自分の乗っている列車が少しずつ隣の列車を追い抜いていく様子が見られます. 
 \begin{freebox}{相対速度}
-    自分から相手を見たときの相手の速度を「自分に対する相手の相対速度」という. 自分に対する相手の相対速度は, 自分の速度$v_{1}$ [m/s], 相手の速度$v_{2}$ [m/s]として, 
+    自分から相手を見たときの相手の速度を「自分に対する相手の相対速度」という. 自分に対する相手の相対速度 [m/s]は, 自分の速度$v_{1}$ [m/s], 相手の速度$v_{2}$ [m/s]として, 
     \begin{equation}
         \bm{v_{2}} - \bm{v_{1}}
     \end{equation}
-    で与えられる. \textbf{これは向きも含んだ式である}.
+    で与えられる. \textbf{これはベクトルである}.
 \end{freebox}
 例を書いてみます. 尚, 向きの異なる速度の合成も, 力の合成と同じように行うことができます\footnote{要するにベクトルであれば同じ方法が使えるということです.}. 必要に応じて, \ref{力の図示} 節を参照してください.
 \begin{exbox}{相対速度の例}
@@ -190,7 +349,7 @@ title={#2},
 \subsection{加速度とは}\label{加速度とは}
 中学生のテキストでは何故か曖昧にされがちですが, 力と運動の関連を考察する際に, 加速度という概念は最も重要です. 
 \begin{freebox}{加速度とは}
-    \textbf{物体の加速度とは, 物体の速度が, 1秒間(単位時間)で何m/s増加(減少)するかを表した量である}.
+    \textbf{物体の加速度とは, 物体の速度が, 1秒間(単位時間)で何m/s増加(減少)するかを表した量である}. 加速度もベクトルに分類される.
 \end{freebox}
 加速度を式で表してみましょう. 時刻$t_{0}$ [s]での速度を$v_{0}$ [m/s], そこから少し経った時刻$t_{1}$ [s]での速度を$v_{1}$ [m/s]とすると,
 \begin{equation}
@@ -198,7 +357,8 @@ title={#2},
 \end{equation}
 で与えられます. \textbf{加速度の単位は,  [m/s] を [s] で割ることになるため, [m/s$^2$] です}. 
 \begin{exbox}{加速度の例}
-例えば, 物体の各時刻での速度が次のようなっていたとしましょう.
+\begin{itemize}
+    \item 例えば, 水平面を運動する物体の各時刻での速度が次のようなっていたとしましょう.
 \begin{center}
     \begin{tabular}{c||ccccc}
         \hline
@@ -212,13 +372,39 @@ title={#2},
     \item 0秒から1.0秒における(平均の)加速度は, $\frac{-2.0-3.0}{1.0 - 0} = -5.0$ [m/s$^2$]. つまりこの区間では, 1秒あたり速度が5.0m/s 減少していると見なせます.
     \item 0秒から2.0秒における(平均の)加速度は, $\frac{4.0-3.0}{2.0 - 0} = 0.5$ [m/s$^2$]. つまりこの区間では, 1秒あたり速度が0.5m/s 増加していると見なせます. 
     \item 1.0秒から3.0秒における(平均の)加速度は, $\frac{6.0 - (-2.0)}{3.0 - 1.0} = 4.0$ [m/s$^2$]. つまりこの区間では, 1秒あたり速度が4.0m/s 増加していると見なせます.
-    \item 2.0秒から4.0秒における(平均の)加速度は, $\frac{8.0 - 4.0}{4.0 - 2.0} = 2.0$ [m/s$^2$]. つまりこの区間では, 1秒あたり速度が2.0m/s 増加していると見なせます.
+\end{itemize}
+\item 例えば, 図のように, 時刻0 [s] で$v(0)$ [m/s]だった速度が, 時刻1 [s] で$v(1)$ [m/s]になったとします. 
+\begin{center}
+\begin{tabular}{cc}
+\begin{minipage}{6cm}
+\centering
+\begin{tikzpicture}[scale = 0.45]
+\coordinate(O)at(0,0);
+\coordinate[label=$v(0)$](v0)at(4, -3);
+\coordinate[label=right:$v(1)$](v1)at(-1, -4);
+\coordinate[label=above:$-v(0)$](mv0)at(-4,3);
+\coordinate[label = {$a = v(1) - v(0)$}](v10)at($(v1) - (v0)$);
+\path[draw, -stealth](O)to(v0);
+\path[draw, -stealth](O)to(v1);
+\path[draw, -stealth, orange](O)to(mv0);
+\path[draw, thick, -stealth](O)to(v10);
+\path[draw, dashed](mv0)to(v10)to(v1);
+\end{tikzpicture}
+\end{minipage}&
+\begin{minipage}{5cm}
+図のように, $v(1)-v(0)$をベクトルとして図示することで, 加速度の向きと大きさが分かります. 今回は\eqref{加速度} 式の分母が1です.
+\end{minipage}
+\end{tabular}
+\end{center}
 \end{itemize}
 \end{exbox}
-地球上の物体の運動を観察する以上, 重力はほとんどの場面で顔を出しますが, 重力加速度というものがとても重要です.
+物体の運動を考察する以上, 重力はほとんどの場面で顔を出しますが, 重力加速度というものがとても重要です.
 \begin{freebox}{重力加速度}
-   重力のみを受ける物体は, 重力により1秒で約9.8m/sだけ速度が増加(減少)する. これを重力加速度といい, $g$と書く. つまり, $g = (約)9.8$ [m/s$^2$]である.
+   地球上で重力のみを受ける物体は, 重力により1秒で約9.8m/sだけ速度が増加(減少)する. このように, 重力によって生じる加速度を重力加速度といい, $g$と書く. つまり, 地球上では$g = (約)9.8$ [m/s$^2$]である.
 \end{freebox}
+例えば月では, 重力加速度の大きさが約$1.6$m/s$^2$となります. よって, 月面での運動を考えるときは$g = 1.6$ [m/s$^2$]として計算を行う必要があるわけです.
+
+
 運動方程式より, 質量$m$ [kg]の物体が受ける重力の大きさは$mg$ [N]と表されます. これだけだとピンとこないかもしれませんが, 例えば次の言い換えが直感的なのではないでしょうか.
 \begin{freebox}{重力加速度の言い換え}
     重力加速度とは, 1kgの物体が受ける重力の大きさである. つまり質量$m$ kgの物体の受ける重力は(1kgのときの$m$倍になり), $mg$ [N]と書ける.
@@ -238,6 +424,7 @@ title={#2},
         \item 大きさ(矢印の長さで表す)
     \end{itemize}
 \end{freebox}
+次の事柄は, 力がベクトルであることを考えれば当たり前と思えるのではないでしょうか. 
 \begin{freebox}{力の合成と分解}
     \begin{itemize}
         \item \textbf{力の合成} : 2つ以上の力を1つにまとめること. 1つにまとめた力を\ruby{合力}{ごうりょく}という. 2力を辺とする平行四辺形を書くと, その対角線が合力を表す. 
@@ -291,57 +478,7 @@ title={#2},
     \item \textbf{静かに} 初速度を与えないことを表します.
 \end{itemize}
 \end{freebox}
- 
-そもそも, 力の合成に平行四辺形が現れ, 合力が対角線になるのはなぜなのでしょうか. 例えば, 進む方向で表すと, $F_{1}$：右に3, 上に1, $F_{2}$：右に2, 上に4と表せます. 
-\begin{center}
-    \begin{tabular}{cc}
-    \begin{minipage}{6cm}
-    \begin{tikzpicture}[scale = 0.6]
-        \foreach \i in {0,...,6}
-        {
-        \draw[gray](\i,0)to(\i,6);
-        }
-        \foreach \i in {0,...,6}
-        {
-        \draw[gray](0,\i)to(6,\i);
-        }
-        \draw(0,0)node[left]{\small{O}};
-        \coordinate[label = left:{\small{O}}](O)at(0,0);
-        \coordinate[label = right:$F_1$](F1)at(3,1);
-        \coordinate[label = above:$F_2$](F2)at(2,4);
-        % 分力
-        \draw[thick,-stealth](O)to(F1);
-        \draw[thick,-stealth](O)to(F2);
-    \end{tikzpicture}
-    
-    \end{minipage}&
-    \begin{minipage}{6cm}
-    \begin{tikzpicture}[scale = 0.6]
-        \foreach \i in {0,...,6}
-        {
-        \draw[gray](\i,0)to(\i,6);
-        }
-        \foreach \i in {0,...,6}
-        {
-        \draw[gray](0,\i)to(6,\i);
-        }
-        \coordinate[label = left:{\small{O}}](O)at(0,0);
-        \coordinate[label = right:$F_1$](F1)at(3,1);
-        \coordinate[label = above:$F_2$](F2)at(2,4);
-        \coordinate[label = above right:$F$](F)at($(F1)+(F2)$);
-        % 合力
-        \draw[thick,-stealth](O)node{$\bullet$}to(F);
-        % 分力
-        \draw[thick,-stealth](O)to(F1);
-        \draw[thick,-stealth](O)to(F2);
-        % 補助線
-        \path[draw, dashed](F1)to(F)to(F2);
-    \end{tikzpicture}
-    \end{minipage}
-    \end{tabular}
-\end{center}
-合力はこれらを合わせたものだから, 右に$3 + 2 = 5$, 上に$1 + 4 = 5$だけ進むと考えて図を書くと, 平行四辺形の対角線に合力が現れることが分かります.
-\begin{exbox}{力の図示の例}
+ \begin{exbox}{力の図示の例}
     \begin{center}
     \begin{tabular}{cc}
     \begin{minipage}{6cm}
@@ -384,7 +521,7 @@ title={#2},
     \end{tabular}
     \end{center}
 \end{exbox}
-\textbf{球の中心を$O$としたとき, 斜面の斜度は$\angle W O W_{2}$に現れることが, 簡単な考察で分かります}\footnote{保存力の性質から導くことも可能です.}. これは中学生でもできると思いますから, 取り組んでみてください. 
+\textbf{球の中心を$O$としたとき, 斜面の斜度は$\angle W O W_{2}$に現れることが, 簡単な考察で分かります}\footnote{斜面を書き, $W$と$W_{2}$を延長することがヒントです.}. これは中学生でもできると思いますから, 取り組んでみてください. 
 
 尚, 三角関数を知っている場合, 斜面の斜度を$\theta$として, $W_{1} = W\sin{\theta}$, $W_{2} = W\cos{\theta}$と表せることが分かると思います.
 
@@ -567,13 +704,13 @@ title={#2},
         \item $f_{4}$：ばねが天井を引く力
     \end{itemize}
     $W$, $f_{1}$が物体にはたらく力で, $f_{2}, f_{3}$がばねにはたらく力, $f_{4}$が天井にはたらく力です. 本来はばねにも重力がかかりますが, 軽いため無視できます.
+    \end{minipage}
+    \end{tabular}     
+    \end{center}
     \begin{itemize}
         \item \textbf{つり合いの関係の力}：$W$と$f_{1}$, $f_{2}$と$f_{3}$ .
         \item \textbf{作用, 反作用の関係の力}：$f_{1}$と$f_{2}$, $f_{3}$と$f_{4}$.
     \end{itemize}
-    \end{minipage}
-    \end{tabular}     
-    \end{center}
     よって, 力の大きさの関係は, $W = f_{1}$, $f_{2}= f_{3}$, $f_{1} = f_{2}$, $f_{3} = f_{4}$. 
     
     つまり, $W = f_{1} = f_{2} = f_{3} = f_{4}$です. 
@@ -741,17 +878,17 @@ title={#2},
     \end{itemize}
 \end{exbox}
 \subsection{等加速度直線運動している物体の速度}\label{等加速度直線運動している物体の速度}
-加速度とは, 1秒(単位時間)あたりに増加(減少する)速度のことだったことを思い出しておきましょう. すると, 等加速度直線運動の場合には, 次のようなことが分かります. $t$秒後の速度を$v$ [m/s], 初速度$v_{0}$ [m/s], 加速度の大きさを$a$ [m/s$^2$]\footnote{時間に依存せず一定値であることが分かる.}とします. このとき物体の速度は, 1秒で$a$ [m/s]だけ加速するため, 
+加速度とは, 1秒(単位時間)あたりに増加(減少)する速度のことだったことを思い出しておきましょう. すると, 等加速度直線運動の場合には, 次のようなことが分かります. $t$秒後の速度を$v$ [m/s], 初速度$v_{0}$ [m/s], 加速度の大きさを$a$ [m/s$^2$]\footnote{時間に依存せず一定値であることが分かる.}とします. このとき物体の速度は, 1秒で$a$ [m/s]だけ加速するため, 
 \begin{freebox}{$t$秒後の速度}
     初速度の向きを正の向きとする. 等加速度直線運動している物体の, 計測から$t$秒後の速度$v$は, 
     \begin{equation}
         \bm{v} = \bm{v_{0}} + \bm{at} \label{等加速度直線運動-速度}
     \end{equation}
-    で与えられる. 
+    で与えられる. これは向きを含んだ式である.
 \end{freebox}
-\eqref{等加速度直線運動-速度} 式より, 等加速度直線運動では, \textbf{縦軸を速度, 横軸を時刻としてグラフを書くと, 切片が$\bm{v_{0}}$, 傾きが$\bm{a}$となる一次関数が書ける}ということです. 
+\eqref{等加速度直線運動-速度} 式より, 等加速度直線運動では, \textbf{縦軸を速度, 横軸を時刻としてグラフを書くと, 切片が$\bm{v_{0}}$, 傾きが$\bm{a}$となる1次関数が書ける}ということです. 
 \begin{freebox}{速度と時刻のグラフ}
-    等加速度直線運動について, 速度と時間の関係をグラフで表すと次のようになる. 
+    等加速度直線運動について, ($v_{0}>0,  a > 0$の場合の)速度と時間の関係をグラフで表すと次のようになる. 
     \begin{center}
     \begin{tikzpicture}[scale=0.4]
             % axis
@@ -771,7 +908,7 @@ title={#2},
 \end{freebox}
 
 \subsection{等加速度直線運動している物体の移動距離}\label{等加速度直線運動している物体の移動距離}
-次に, 物体の移動距離に関しても考察を深めましょう. 「物体の移動距離」という言葉を使っていますが, 正確には「物体の位置」を表しています. \ref{等加速度直線運動している物体の速度} 節の\textbf{速度と時刻のグラフ}\footnote{このようなグラフを$v$-$t$グラフといいます.}について, このグラフを長方形たちに区切ってみます. 一つ一つの長方形の面積は, $「速さ」\times「経過時間」$を表しているため, 区切った時間で移動した距離を表すはずです. 
+次に, 物体の移動距離に関しても考察を深めましょう. 「物体の移動距離」という言葉を使っていますが, 正確には「物体の位置」または「物体の変位」を表しています. 変位とは, 物体が初期位置からどれだけ変化したかを表す量です\footnote{例えば原点から右に5mだけ進み, そのあと折り返して左に3mだけ進んだとすると, 物体の変位は右に2mとなります. 総移動距離は8mです. }. \ref{等加速度直線運動している物体の速度} 節の\textbf{速度と時刻のグラフ}\footnote{このようなグラフを$v$-$t$グラフといいます.}について, このグラフを長方形たちに区切ってみます. 一つ一つの長方形の面積は, $「速さ」\times「経過時間」$を表しているため, 区切った時間で移動した距離を表すはずです. 
 \begin{center}
 \begin{tabular}{cc}
     長方形に分割 & 長方形の分割を細かくする\\
@@ -829,7 +966,7 @@ title={#2},
     \end{equation}
     である. \textbf{つまり, 物体の移動距離は, 時刻の2次関数となることが分かる}. 
 \end{freebox}
-実は, \ref{瞬間の速さと微分} 節の$x$-$t$グラフは, 初速度$v_{0} = 0$の等加速度直線運動のものです.
+厳密には, \eqref{等加速度直線運動-位置} 式が表すものは物体の位置または変位です. 本来は符号付きで面積の和を考えます. 実は, \ref{瞬間の速さと微分} 節の$x$-$t$グラフは, 初速度$v_{0} = 0$の等加速度直線運動のものです.
 有名な事実かもしれませんが, \eqref{等加速度直線運動-速度} 式や, \eqref{等加速度直線運動-位置} 式を見て分かるように, 物体の速度と位置に, 物体の質量は関係していません. よって, 次のような例があります.
 \begin{exbox}{直感に反する例}
     空気抵抗がない状態で, 鉄球とアリを, 同じ高さから手を離すことで自由落下させます. このとき, 鉄球もアリも, 全く同じタイミングで地面に着きます. また, ストロボ写真をとっても, 全く同じ動きの写真が撮れます.
@@ -1792,7 +1929,9 @@ $x$ [m]だけ伸びた(縮んだ)ばねは, 物体にどれだけの仕事を行
     \end{equation}
     で与えられる. $g$ [m/s$^2$] は重力加速度である. \textbf{浮力の作用点のことを浮心という}. 
 \end{freebox}
-\eqref{浮力の式} 式より, 浮力は, 物体の流体中にある部分の体積に比例します. ここで, $\rho Vg$という式をよく見ると, これは体積$V$ [m$^3$] , 密度$\rho$ [kg/m$^3$] の流体にはたらく重力の大きさ(重さ)を表していることが分かります. よって, 次のようなことがいえます\footnote{アルキメデスという人が発見したため, その名前がついています. 彼は古代ギリシア時代の人物であり, 科学者, 発明家として知られています.}.
+\eqref{浮力の式} 式より, 浮力は, 物体の流体中にある部分の体積に比例します. \textbf{よって, 物体全体が沈むまでは, 物体の受ける浮力が増加し, 物体全体が沈んだ直後からは($V$が一定のため), 物体をいくら深く沈めても, 浮力は一定値となるわけです}. ただし, 深く沈めるほど水圧自体は増加することに注意です. 
+
+ここで, $\rho Vg$という式をよく見ると, これは体積$V$ [m$^3$] , 密度$\rho$ [kg/m$^3$] の流体にはたらく重力の大きさ(重さ)を表していることが分かります. よって, 次のようなことがいえます\footnote{アルキメデスという人が発見したため, その名前がついています. 彼は古代ギリシア時代の人物であり, 科学者, 発明家として知られています.}.
 \begin{freebox}{浮力に関するアルキメデスの原理}
 \textbf{物体が受ける浮力の大きさは, その物体が押しのけた体積の流体の重さに等しい.}
 \end{freebox}
@@ -2127,4 +2266,11 @@ F(t_{1} - t_{0}) = mv_{1} - mv_{0}
     $\dfrac{M}{m-M}v$ [m/s]で与えられたとします. $m-M < 0$のため, この速度は負です. よって, \medbreak
     「物体の速さを答えよ」と言われた際には$\dfrac{M}{M-m}v$ [m/s]となります.
 \end{itemize}
+\begin{center}
+【MEMO】
+\end{center}
+\newpage
+\begin{center}
+【MEMO】
+\end{center}
 \end{document}
